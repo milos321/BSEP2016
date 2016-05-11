@@ -1,6 +1,6 @@
 
 public class MainFrame {
-private int a;
-private int v;
+private int w;
 private int s;
+private int x;
 }
