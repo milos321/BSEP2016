@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -14,11 +15,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import actions.Akcija1;
+import actions.Akcija2;
+import actions.Akcija3;
+
 
 public class MainFrame extends JFrame {
 
 	private static MainFrame frame = null;
 	private JMenuBar menuBar;
+	private MyToolBar toolbar;
 	
 	private MainFrame() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -28,7 +34,9 @@ public class MainFrame extends JFrame {
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
 		Menu();
-		setJMenuBar(menuBar);
+		this.setJMenuBar(menuBar);
+		toolbar = new MyToolBar(null);
+		add(toolbar,BorderLayout.NORTH);
 	
 	}
 	
@@ -47,11 +55,11 @@ public class MainFrame extends JFrame {
 		JMenu ex = new JMenu("Examine");
 		JMenu help = new JMenu("Help");
 		
-		JMenuItem ks = new JMenuItem("New Keystore");
+		JMenuItem ks = new JMenuItem(new Akcija1(null));
 		file.add(ks);
-		JMenuItem t = new JMenuItem("Generate Key Pair");
+		JMenuItem t = new JMenuItem(new Akcija2(null));
 		tools.add(t);
-		JMenuItem e = new JMenuItem("Examine Certificate");
+		JMenuItem e = new JMenuItem(new Akcija3(null));
 		ex.add(e);
 		
 
