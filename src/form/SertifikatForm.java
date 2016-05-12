@@ -21,10 +21,13 @@ public class SertifikatForm extends JDialog{
 	private JButton btnCommit;
 	private JTextField ime = new JTextField(15);
 	private JTextField prz = new JTextField(20);
+	
+
 	private JTextField jmbg = new JTextField(13);
 	private JTextField mesto = new JTextField(20);
 	private JTextField adresa = new JTextField(20);
 	private JTextField broj = new JTextField(5);
+	private JTextField cn = new JTextField(20);
 	private JComboBox izdavalac = new JComboBox();
 
 	public SertifikatForm() {
@@ -63,6 +66,7 @@ public class SertifikatForm extends JDialog{
 		JLabel me = new JLabel("Mesto:");
 		JLabel ad = new JLabel ("Adresa:");
 		JLabel br = new JLabel("Broj:");
+		JLabel cnLab = new JLabel("CN: ");
 		JLabel izd = new JLabel("Izdavalac:");
 
 		dataPanel.add(im);
@@ -77,6 +81,8 @@ public class SertifikatForm extends JDialog{
 		dataPanel.add(adresa,"wrap");
 		dataPanel.add(br);
 		dataPanel.add(broj,"wrap");
+		dataPanel.add(cnLab);
+		dataPanel.add(cn, "wrap");
 		dataPanel.add(izd);
 		dataPanel.add(izdavalac);
 		bottomPanel.add(dataPanel);
@@ -89,6 +95,78 @@ public class SertifikatForm extends JDialog{
 		
 		
 		
+	}
+	
+	public JButton getBtnCommit() {
+		return btnCommit;
+	}
+
+	public void setBtnCommit(JButton btnCommit) {
+		this.btnCommit = btnCommit;
+	}
+
+	public JTextField getIme() {
+		return ime;
+	}
+
+	public void setIme(JTextField ime) {
+		this.ime = ime;
+	}
+
+	public JTextField getPrz() {
+		return prz;
+	}
+
+	public void setPrz(JTextField prz) {
+		this.prz = prz;
+	}
+
+	public JTextField getJmbg() {
+		return jmbg;
+	}
+
+	public void setJmbg(JTextField jmbg) {
+		this.jmbg = jmbg;
+	}
+
+	public JTextField getMesto() {
+		return mesto;
+	}
+
+	public void setMesto(JTextField mesto) {
+		this.mesto = mesto;
+	}
+
+	public JTextField getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(JTextField adresa) {
+		this.adresa = adresa;
+	}
+
+	public JTextField getBroj() {
+		return broj;
+	}
+
+	public void setBroj(JTextField broj) {
+		this.broj = broj;
+	}
+
+	public JComboBox getIzdavalac() {
+		return izdavalac;
+	}
+
+	public void setIzdavalac(JComboBox izdavalac) {
+		this.izdavalac = izdavalac;
+	}
+
+	public JTextField getCn() {
+		return cn;
+	}
+
+	public void setCn(JTextField cn) {
+		this.cn = cn;
 	}
 
 }
