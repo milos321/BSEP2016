@@ -37,7 +37,7 @@ public class CertificateGenerator {
 		Security.addProvider(new BouncyCastleProvider());
 	}
 	
-	public X509Certificate generateCertificate(IssuerData issuerData, SubjectData subjectData) {
+	public static X509Certificate generateCertificate(IssuerData issuerData, SubjectData subjectData) {
 		 try {
 			 
 			 //posto klasa za generisanje sertifiakta ne moze da primi direktno privatni kljuc

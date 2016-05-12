@@ -2,12 +2,15 @@ package actions;
 
 import form.SertifikatForm;
 import security.CertificateGenerator;
+import security.IssuerData;
 import security.KeyStoreWriter;
 import security.SubjectData;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.security.KeyPair;
+import java.security.cert.X509Certificate;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -80,13 +83,23 @@ private JDialog standardForm;
 		    //ovo bi trebalo da se inkrementira, a?
 			String sn="1";
 		    SubjectData subjData = new SubjectData(keyPair.getPublic(),builder.build(),sn,startDate,endDate);
+		    X509Certificate cert = null;
 		    if(sertForm.getIzdavalac().getSelectedItem().equals("samopotpisan"))
 		    {
+		    	IssuerData issuerData = new IssuerData(keyPair.getPrivate(),builder.build());
+		    	cert = CertificateGenerator.generateCertificate( issuerData,subjData);
 		    	System.out.println("fggfgf");
 		    }
 		    KeyStoreWriter ksw = new KeyStoreWriter();
-		    ksw.loadKeyStore("./data/test.jks","sgns".toCharArray());
-			
+		    
+		    File f = new File("./data/sgns.jks");
+		    if(!f.exists() || f.isDirectory()) { 
+		    	ksw.loadKeyStore(null,"sgns".toCharArray());
+		    }
+		    else ksw.loadKeyStore("./data/sgns.jks","sgns".toCharArray());
+		    
+		    ksw.write(sertForm.getAlias().getText(), keyPair.getPrivate(), "test10".toCharArray(), cert);
+			ksw.saveKeyStore("./data/sgns.jks", "test10".toCharArray());
 		   
 		}
 		standardForm.dispose();
