@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import actions.Akcija1;
 import actions.Akcija2;
 import actions.Akcija3;
+import actions.AddAction;
 
 
 
@@ -46,6 +47,13 @@ public class MyToolBar extends JToolBar{
 		button = new JButton(new ImageIcon(getClass().getResource("/slike/zoom-pickup.gif")));
 		button.setToolTipText("3");
 		button.addActionListener(new Akcija3(dialog));
+		this.add(button);
+		
+		addSeparator();
+
+		button = new JButton(new ImageIcon(getClass().getResource("/slike/add.gif")));
+		button.setToolTipText("3");
+		button.addActionListener(new AddAction(dialog));
 		this.add(button);
 		
 		
