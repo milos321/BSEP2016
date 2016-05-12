@@ -31,6 +31,7 @@ public class SertifikatForm extends JDialog{
 	private JTextField c = new JTextField(20);
 	private JTextField e = new JTextField(20);
 	private JComboBox<String> izdavalac = new JComboBox<String>();
+	private JTextField alias = new JTextField(20);
 
 	public SertifikatForm() {
 		
@@ -72,6 +73,7 @@ public class SertifikatForm extends JDialog{
 		JLabel cl = new JLabel("Country (C):");
 		JLabel el = new JLabel("Email (E):");
 		JLabel izdl = new JLabel("Issuer:");
+		JLabel ali  = new JLabel("Alias");
 
 		dataPanel.add(daysl);
 		dataPanel.add(days,"wrap");
@@ -89,7 +91,10 @@ public class SertifikatForm extends JDialog{
 		dataPanel.add(c, "wrap");
 		dataPanel.add(el);
 		dataPanel.add(e, "wrap");
+		dataPanel.add(ali);
+		dataPanel.add(alias,"wrap");
 		dataPanel.add(izdl);
+		
 		dataPanel.add(izdavalac);
 		bottomPanel.add(dataPanel);
 
@@ -192,6 +197,14 @@ public class SertifikatForm extends JDialog{
 
 	public void setIzdavalac(JComboBox izdavalac) {
 		this.izdavalac = izdavalac;
+	}
+
+	public JTextField getAlias() {
+		return alias;
+	}
+
+	public void setAlias(JTextField alias) {
+		this.alias = alias;
 	}
 
 	
