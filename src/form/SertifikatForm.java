@@ -3,6 +3,16 @@ package form;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import security.KeyStoreReader;
 import actions.AddAction;
 import actions.CancelAction;
 import actions.CommitAction;
@@ -33,7 +44,7 @@ public class SertifikatForm extends JDialog{
 	private JComboBox<String> izdavalac = new JComboBox<String>();
 	private JTextField alias = new JTextField(20);
 
-	public SertifikatForm() {
+	public SertifikatForm() throws CertificateException {
 		
 		setLayout(new MigLayout("fill"));
 		
@@ -50,7 +61,7 @@ public class SertifikatForm extends JDialog{
 		// TODO Auto-generated constructor stub
 	}
 	
-	private void initGui(){
+	private void initGui() throws CertificateException{
 
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new MigLayout("fillx"));
@@ -106,6 +117,25 @@ public class SertifikatForm extends JDialog{
 		add(bottomPanel, "grow, wrap");
 		izdavalac.addItem("samopotpisan");
 		
+		KeyStoreReader ksr = new KeyStoreReader();
+		
+		File f = new File("./data/sgns.jks");
+	    if(f.exists() && !f.isDirectory()) {
+		ksr.setKeyStoreFile("./data/sgns.jks");
+		
+		HashMap<String,Certificate> sertifikati=ksr.readKeyStore();
+
+		Iterator it = sertifikati.values().iterator();
+		Iterator it2 = sertifikati.keySet().iterator();
+		while(it.hasNext())
+		{
+		CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+		InputStream in = new ByteArrayInputStream(((Certificate) it.next()).getEncoded());
+		X509Certificate cert2 = (X509Certificate)certFactory.generateCertificate(in);
+		izdavalac.addItem(it2.next().toString());
+		
+		}
+	    }
 		
 	}
 

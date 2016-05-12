@@ -99,7 +99,7 @@ private JDialog standardForm;
 		    else ksw.loadKeyStore("./data/sgns.jks","sgns".toCharArray());
 		    
 		    ksw.write(sertForm.getAlias().getText(), keyPair.getPrivate(), "test10".toCharArray(), cert);
-			ksw.saveKeyStore("./data/sgns.jks", "test10".toCharArray());
+			ksw.saveKeyStore("./data/sgns.jks", "sgns".toCharArray());
 		   
 		}
 		standardForm.dispose();
