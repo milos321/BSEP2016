@@ -1,10 +1,12 @@
 package actions;
 
 import form.SertifikatForm;
+import security.CertificateGenerator;
 import security.SubjectData;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.security.KeyPair;
 import java.sql.SQLException;
 
 import javax.swing.AbstractAction;
@@ -49,16 +51,21 @@ private JDialog standardForm;
 			String prz = sertForm.getPrz().getText();
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
 		    builder.addRDN(BCStyle.CN, cn);
-		    builder.addRDN(BCStyle.SURNAME, "Sladic");
-		    builder.addRDN(BCStyle.GIVENNAME, "Goran");
-		    builder.addRDN(BCStyle.O, "UNS-FTN");
-		    builder.addRDN(BCStyle.OU, "Katedra za informatiku");
-		    builder.addRDN(BCStyle.C, "RS");
+		    builder.addRDN(BCStyle.SURNAME, prz);
+		    builder.addRDN(BCStyle.GIVENNAME, ime);
+		    builder.addRDN(BCStyle.O, o);
+		    builder.addRDN(BCStyle.OU, ou);
+		    builder.addRDN(BCStyle.C, c);
 		    //builder.addRDN(BCStyle.E, "sladicg@uns.ac.rs");
 		    //UID (USER ID) je ID korisnika
+		    //ajde da ovo za pocetak ne bude promenljivo...
 		    builder.addRDN(BCStyle.UID, "123445");
+		    KeyPair keyPair = CertificateGenerator.generateKeyPair();
+		    
+		    SubjectData subjData = new SubjectData();
 			
 		    //Serijski broj sertifikata
+		    //ovo bi trebalo da se inkrementira, a?
 			String sn="1";
 		}
 		standardForm.dispose();
