@@ -35,7 +35,7 @@ public class Form extends JDialog{
 		int height = (int) (screen.getHeight() * 0.25);
 		this.setSize(width, height);
 	//	setSize(new Dimension(800, 600));
-		setTitle("Registracija korisnika");
+		setTitle("Registracija korisnika ");
 		setLocationRelativeTo(null);
 		setModal(true);
 		
