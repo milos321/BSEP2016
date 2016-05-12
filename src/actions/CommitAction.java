@@ -8,6 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.security.KeyPair;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.AbstractAction;
 import javax.swing.JDialog;
@@ -49,7 +53,21 @@ private JDialog standardForm;
 			String ime = sertForm.getIme().getText();
 			//Prezime
 			String prz = sertForm.getPrz().getText();
+			//broj dana
+			int brojDana = 365;
+			SimpleDateFormat iso8601Formater = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar today = Calendar.getInstance();
+			today.setTime(new Date());
+			Date startDate = today.getTime();
+			today.add(Calendar.DATE, brojDana);
+			
+			Date endDate = today.getTime();
+			System.out.println(startDate);
+			System.out.println(endDate);
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
+			
+			
 		    builder.addRDN(BCStyle.CN, cn);
 		    builder.addRDN(BCStyle.SURNAME, prz);
 		    builder.addRDN(BCStyle.GIVENNAME, ime);
@@ -61,12 +79,12 @@ private JDialog standardForm;
 		    //ajde da ovo za pocetak ne bude promenljivo...
 		    builder.addRDN(BCStyle.UID, "123445");
 		    KeyPair keyPair = CertificateGenerator.generateKeyPair();
-		    
-		    SubjectData subjData = new SubjectData();
-			
 		    //Serijski broj sertifikata
 		    //ovo bi trebalo da se inkrementira, a?
 			String sn="1";
+		    SubjectData subjData = new SubjectData(keyPair.getPublic(),builder.build(),sn,startDate,endDate);
+			
+		   
 		}
 		standardForm.dispose();
 	}
