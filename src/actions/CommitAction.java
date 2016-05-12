@@ -1,6 +1,8 @@
 package actions;
 
 import form.SertifikatForm;
+import security.SubjectData;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -8,6 +10,9 @@ import java.sql.SQLException;
 import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.KeyStroke;
+
+import org.bouncycastle.asn1.x500.X500NameBuilder;
+import org.bouncycastle.asn1.x500.style.BCStyle;
 
 public class CommitAction extends AbstractAction{
 
@@ -25,7 +30,37 @@ private JDialog standardForm;
 	@Override
 	public void actionPerformed(ActionEvent arg0) {	
 		
+		if(standardForm instanceof SertifikatForm)
+		{
+			SertifikatForm sertForm = (SertifikatForm)standardForm;
+			//C
+			String c = sertForm.getJmbg().getText();
+			//L
+			String l = sertForm.getMesto().getText();
+			//O
+			String o = sertForm.getAdresa().getText();
+			//OU		
+			String ou = sertForm.getBroj().getText();
+			//CN	
+			String cn = sertForm.getAdresa().getText();
+			//Ime
+			String ime = sertForm.getIme().getText();
+			//Prezime
+			String prz = sertForm.getPrz().getText();
+			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
+		    builder.addRDN(BCStyle.CN, cn);
+		    builder.addRDN(BCStyle.SURNAME, "Sladic");
+		    builder.addRDN(BCStyle.GIVENNAME, "Goran");
+		    builder.addRDN(BCStyle.O, "UNS-FTN");
+		    builder.addRDN(BCStyle.OU, "Katedra za informatiku");
+		    builder.addRDN(BCStyle.C, "RS");
+		    //builder.addRDN(BCStyle.E, "sladicg@uns.ac.rs");
+		    //UID (USER ID) je ID korisnika
+		    builder.addRDN(BCStyle.UID, "123445");
+			
+		    //Serijski broj sertifikata
+			String sn="1";
+		}
 		standardForm.dispose();
-		
 	}
 }
