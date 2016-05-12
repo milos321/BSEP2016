@@ -40,21 +40,14 @@ private JDialog standardForm;
 		{
 			SertifikatForm sertForm = (SertifikatForm)standardForm;
 			//C
-			String c = sertForm.getC().getText();
+			String c = sertForm.getJmbg().getText();
 			//L
-			String l = sertForm.getL().getText();
+			String l = sertForm.getMesto().getText();
 			//O
-			String on = sertForm.getOn().getText();
+			String o = sertForm.getAdresa().getText();
 			//OU		
-			String ou = sertForm.getOu().getText();
+			String ou = sertForm.getBroj().getText();
 			//CN	
-<<<<<<< HEAD
-			String cn = sertForm.getCn().getText();
-			//Days
-			String ime = sertForm.getDays().getText();
-			//Email
-			String prz = sertForm.getE().getText();
-=======
 			String cn = sertForm.getAdresa().getText();
 			//Ime
 			String ime = sertForm.getIme().getText();
@@ -72,7 +65,6 @@ private JDialog standardForm;
 			Date endDate = today.getTime();
 			System.out.println(startDate);
 			System.out.println(endDate);
->>>>>>> dbf54e8b652ddfff79fec5e654042feb5bd56565
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
 			
 			
