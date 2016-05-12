@@ -2,6 +2,7 @@ package actions;
 
 import form.SertifikatForm;
 import security.CertificateGenerator;
+import security.KeyStoreWriter;
 import security.SubjectData;
 
 import java.awt.event.ActionEvent;
@@ -40,21 +41,17 @@ private JDialog standardForm;
 		{
 			SertifikatForm sertForm = (SertifikatForm)standardForm;
 			//C
-			String c = sertForm.getJmbg().getText();
+			String c = sertForm.getC().getText();
 			//L
-			String l = sertForm.getMesto().getText();
+			String l = sertForm.getL().getText();
 			//O
-			String o = sertForm.getAdresa().getText();
+			String o = sertForm.getOn().getText();
 			//OU		
-			String ou = sertForm.getBroj().getText();
+			String ou = sertForm.getOu().getText();
 			//CN	
-			String cn = sertForm.getAdresa().getText();
-			//Ime
-			String ime = sertForm.getIme().getText();
-			//Prezime
-			String prz = sertForm.getPrz().getText();
+			String cn = sertForm.getCn().getText();
 			//broj dana
-			int brojDana = 365;
+			int brojDana =Integer.parseInt(sertForm.getDays().getText());
 			SimpleDateFormat iso8601Formater = new SimpleDateFormat("yyyy-MM-dd");
 			
 			Calendar today = Calendar.getInstance();
@@ -69,8 +66,8 @@ private JDialog standardForm;
 			
 			
 		    builder.addRDN(BCStyle.CN, cn);
-		    builder.addRDN(BCStyle.SURNAME, prz);
-		    builder.addRDN(BCStyle.GIVENNAME, ime);
+		   // builder.addRDN(BCStyle.SURNAME, prz);
+		  //  builder.addRDN(BCStyle.GIVENNAME, ime);
 		    builder.addRDN(BCStyle.O, o);
 		    builder.addRDN(BCStyle.OU, ou);
 		    builder.addRDN(BCStyle.C, c);
@@ -83,6 +80,12 @@ private JDialog standardForm;
 		    //ovo bi trebalo da se inkrementira, a?
 			String sn="1";
 		    SubjectData subjData = new SubjectData(keyPair.getPublic(),builder.build(),sn,startDate,endDate);
+		    if(sertForm.getIzdavalac().getSelectedItem().equals("samopotpisan"))
+		    {
+		    	System.out.println("fggfgf");
+		    }
+		    KeyStoreWriter ksw = new KeyStoreWriter();
+		    ksw.loadKeyStore("./data/test.jks","sgns".toCharArray());
 			
 		   
 		}
