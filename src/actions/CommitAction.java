@@ -1,11 +1,17 @@
 package actions;
 
 import form.SertifikatForm;
+import security.CertificateGenerator;
 import security.SubjectData;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.security.KeyPair;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.AbstractAction;
 import javax.swing.JDialog;
@@ -42,24 +48,51 @@ private JDialog standardForm;
 			//OU		
 			String ou = sertForm.getOu().getText();
 			//CN	
+<<<<<<< HEAD
 			String cn = sertForm.getCn().getText();
 			//Days
 			String ime = sertForm.getDays().getText();
 			//Email
 			String prz = sertForm.getE().getText();
+=======
+			String cn = sertForm.getAdresa().getText();
+			//Ime
+			String ime = sertForm.getIme().getText();
+			//Prezime
+			String prz = sertForm.getPrz().getText();
+			//broj dana
+			int brojDana = 365;
+			SimpleDateFormat iso8601Formater = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar today = Calendar.getInstance();
+			today.setTime(new Date());
+			Date startDate = today.getTime();
+			today.add(Calendar.DATE, brojDana);
+			
+			Date endDate = today.getTime();
+			System.out.println(startDate);
+			System.out.println(endDate);
+>>>>>>> dbf54e8b652ddfff79fec5e654042feb5bd56565
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
+			
+			
 		    builder.addRDN(BCStyle.CN, cn);
-		    builder.addRDN(BCStyle.SURNAME, "Sladic");
-		    builder.addRDN(BCStyle.GIVENNAME, "Goran");
-		    builder.addRDN(BCStyle.O, "UNS-FTN");
-		    builder.addRDN(BCStyle.OU, "Katedra za informatiku");
-		    builder.addRDN(BCStyle.C, "RS");
+		    builder.addRDN(BCStyle.SURNAME, prz);
+		    builder.addRDN(BCStyle.GIVENNAME, ime);
+		    builder.addRDN(BCStyle.O, o);
+		    builder.addRDN(BCStyle.OU, ou);
+		    builder.addRDN(BCStyle.C, c);
 		    //builder.addRDN(BCStyle.E, "sladicg@uns.ac.rs");
 		    //UID (USER ID) je ID korisnika
+		    //ajde da ovo za pocetak ne bude promenljivo...
 		    builder.addRDN(BCStyle.UID, "123445");
-			
+		    KeyPair keyPair = CertificateGenerator.generateKeyPair();
 		    //Serijski broj sertifikata
+		    //ovo bi trebalo da se inkrementira, a?
 			String sn="1";
+		    SubjectData subjData = new SubjectData(keyPair.getPublic(),builder.build(),sn,startDate,endDate);
+			
+		   
 		}
 		standardForm.dispose();
 	}

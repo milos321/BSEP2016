@@ -88,7 +88,7 @@ public class CertificateGenerator {
 		}
 	}
 	
-	public KeyPair generateKeyPair() {
+	public static KeyPair generateKeyPair() {
 		try {
 			//generator para kljuceva
 			KeyPairGenerator   keyGen = KeyPairGenerator.getInstance("RSA");
