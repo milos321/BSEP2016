@@ -30,7 +30,7 @@ public class SertifikatForm extends JDialog{
 	private JTextField st = new JTextField(20);
 	private JTextField c = new JTextField(20);
 	private JTextField e = new JTextField(20);
-	private JComboBox izdavalac = new JComboBox();
+	private JComboBox<String> izdavalac = new JComboBox<String>();
 
 	public SertifikatForm() {
 		
@@ -99,7 +99,7 @@ public class SertifikatForm extends JDialog{
 		bottomPanel.add(buttonsPanel,"dock east");
 
 		add(bottomPanel, "grow, wrap");
-		
+		izdavalac.addItem("samopotpisan");
 		
 		
 	}
