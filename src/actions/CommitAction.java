@@ -1,6 +1,6 @@
 package actions;
 
-import form.Form;
+import form.SertifikatForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;

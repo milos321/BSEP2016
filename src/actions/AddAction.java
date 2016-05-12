@@ -1,6 +1,6 @@
 package actions;
 
-import form.Form;
+import form.SertifikatForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -25,8 +25,8 @@ private JDialog standardForm;
 	@Override
 	public void actionPerformed(ActionEvent arg0) {	
 		
-		Form form = null;
-			form = new Form();
+		SertifikatForm form = null;
+			form = new SertifikatForm();
 		
 		form.setVisible(true);
 		

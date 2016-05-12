@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,7 +16,7 @@ import actions.AddAction;
 import actions.CommitAction;
 
 
-public class Form extends JDialog{
+public class SertifikatForm extends JDialog{
 	
 	private JButton btnCommit;
 	private JTextField ime = new JTextField(15);
@@ -24,18 +25,18 @@ public class Form extends JDialog{
 	private JTextField mesto = new JTextField(20);
 	private JTextField adresa = new JTextField(20);
 	private JTextField broj = new JTextField(5);
+	private JComboBox izdavalac = new JComboBox();
 
-	public Form() {
+	public SertifikatForm() {
 		
 		setLayout(new MigLayout("fill"));
 		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		setTitle("Bezbednost");
 		int width = (int) (screen.getWidth() * 0.25);
 		int height = (int) (screen.getHeight() * 0.25);
 		this.setSize(width, height);
 	//	setSize(new Dimension(800, 600));
-		setTitle("Registracija korisnika ");
+		setTitle("Sertifikat");
 		setLocationRelativeTo(null);
 		setModal(true);
 		
@@ -55,13 +56,14 @@ public class Form extends JDialog{
 		btnCommit = new JButton(new CommitAction(this));
 
 
-
+		
 		JLabel im = new JLabel ("Ime:");
 		JLabel pr = new JLabel("Prezime:");
 		JLabel jm = new JLabel ("JMBG:");
 		JLabel me = new JLabel("Mesto:");
 		JLabel ad = new JLabel ("Adresa:");
 		JLabel br = new JLabel("Broj:");
+		JLabel izd = new JLabel("Izdavalac:");
 
 		dataPanel.add(im);
 		dataPanel.add(ime,"wrap");
@@ -74,7 +76,9 @@ public class Form extends JDialog{
 		dataPanel.add(ad);
 		dataPanel.add(adresa,"wrap");
 		dataPanel.add(br);
-		dataPanel.add(broj);
+		dataPanel.add(broj,"wrap");
+		dataPanel.add(izd);
+		dataPanel.add(izdavalac);
 		bottomPanel.add(dataPanel);
 
 		buttonsPanel.setLayout(new MigLayout("wrap"));
