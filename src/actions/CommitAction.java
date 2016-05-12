@@ -34,19 +34,19 @@ private JDialog standardForm;
 		{
 			SertifikatForm sertForm = (SertifikatForm)standardForm;
 			//C
-			String c = sertForm.getJmbg().getText();
+			String c = sertForm.getC().getText();
 			//L
-			String l = sertForm.getMesto().getText();
+			String l = sertForm.getL().getText();
 			//O
-			String o = sertForm.getAdresa().getText();
+			String on = sertForm.getOn().getText();
 			//OU		
-			String ou = sertForm.getBroj().getText();
+			String ou = sertForm.getOu().getText();
 			//CN	
-			String cn = sertForm.getAdresa().getText();
-			//Ime
-			String ime = sertForm.getIme().getText();
-			//Prezime
-			String prz = sertForm.getPrz().getText();
+			String cn = sertForm.getCn().getText();
+			//Days
+			String ime = sertForm.getDays().getText();
+			//Email
+			String prz = sertForm.getE().getText();
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
 		    builder.addRDN(BCStyle.CN, cn);
 		    builder.addRDN(BCStyle.SURNAME, "Sladic");

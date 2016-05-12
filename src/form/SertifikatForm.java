@@ -13,21 +13,23 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 import actions.AddAction;
+import actions.CancelAction;
 import actions.CommitAction;
 
 
 public class SertifikatForm extends JDialog{
 	
 	private JButton btnCommit;
-	private JTextField ime = new JTextField(15);
-	private JTextField prz = new JTextField(20);
+	private JButton btnCancel;
 	
-
-	private JTextField jmbg = new JTextField(13);
-	private JTextField mesto = new JTextField(20);
-	private JTextField adresa = new JTextField(20);
-	private JTextField broj = new JTextField(5);
+	private JTextField days = new JTextField(20);
 	private JTextField cn = new JTextField(20);
+	private JTextField ou = new JTextField(20);
+	private JTextField on = new JTextField(20);
+	private JTextField l = new JTextField(20);
+	private JTextField st = new JTextField(20);
+	private JTextField c = new JTextField(20);
+	private JTextField e = new JTextField(20);
 	private JComboBox izdavalac = new JComboBox();
 
 	public SertifikatForm() {
@@ -57,38 +59,43 @@ public class SertifikatForm extends JDialog{
 
 		JPanel buttonsPanel = new JPanel();
 		btnCommit = new JButton(new CommitAction(this));
+		btnCancel = new JButton(new CancelAction(this));
 
 
 		
-		JLabel im = new JLabel ("Ime:");
-		JLabel pr = new JLabel("Prezime:");
-		JLabel jm = new JLabel ("JMBG:");
-		JLabel me = new JLabel("Mesto:");
-		JLabel ad = new JLabel ("Adresa:");
-		JLabel br = new JLabel("Broj:");
-		JLabel cnLab = new JLabel("CN: ");
-		JLabel izd = new JLabel("Izdavalac:");
+		JLabel daysl = new JLabel ("Validity(days):");
+		JLabel cnl = new JLabel("Common Name (CN):");
+		JLabel oul = new JLabel ("Organization unit (OU):");
+		JLabel onl = new JLabel ("Organisation Name (ON):");
+		JLabel ll = new JLabel("Locality Name (L):");
+		JLabel stl = new JLabel("State Name (ST):");
+		JLabel cl = new JLabel("Country (C):");
+		JLabel el = new JLabel("Email (E):");
+		JLabel izdl = new JLabel("Issuer:");
 
-		dataPanel.add(im);
-		dataPanel.add(ime,"wrap");
-		dataPanel.add(pr);
-		dataPanel.add(prz,"wrap");
-		dataPanel.add(jm);
-		dataPanel.add(jmbg,"wrap");
-		dataPanel.add(me);
-		dataPanel.add(mesto,"wrap");
-		dataPanel.add(ad);
-		dataPanel.add(adresa,"wrap");
-		dataPanel.add(br);
-		dataPanel.add(broj,"wrap");
-		dataPanel.add(cnLab);
-		dataPanel.add(cn, "wrap");
-		dataPanel.add(izd);
+		dataPanel.add(daysl);
+		dataPanel.add(days,"wrap");
+		dataPanel.add(cnl);
+		dataPanel.add(cn,"wrap");
+		dataPanel.add(oul);
+		dataPanel.add(ou,"wrap");
+		dataPanel.add(onl);
+		dataPanel.add(on,"wrap");
+		dataPanel.add(ll);
+		dataPanel.add(l,"wrap");
+		dataPanel.add(stl);
+		dataPanel.add(st,"wrap");
+		dataPanel.add(cl);
+		dataPanel.add(c, "wrap");
+		dataPanel.add(el);
+		dataPanel.add(e, "wrap");
+		dataPanel.add(izdl);
 		dataPanel.add(izdavalac);
 		bottomPanel.add(dataPanel);
 
 		buttonsPanel.setLayout(new MigLayout("wrap"));
 		buttonsPanel.add(btnCommit);
+		buttonsPanel.add(btnCancel);
 		bottomPanel.add(buttonsPanel,"dock east");
 
 		add(bottomPanel, "grow, wrap");
@@ -96,7 +103,7 @@ public class SertifikatForm extends JDialog{
 		
 		
 	}
-	
+
 	public JButton getBtnCommit() {
 		return btnCommit;
 	}
@@ -104,53 +111,79 @@ public class SertifikatForm extends JDialog{
 	public void setBtnCommit(JButton btnCommit) {
 		this.btnCommit = btnCommit;
 	}
+	
+	
 
-	public JTextField getIme() {
-		return ime;
+	public JButton getBtnCancel() {
+		return btnCancel;
 	}
 
-	public void setIme(JTextField ime) {
-		this.ime = ime;
+	public void setBtnCancel(JButton btnCancel) {
+		this.btnCancel = btnCancel;
 	}
 
-	public JTextField getPrz() {
-		return prz;
+	public JTextField getDays() {
+		return days;
 	}
 
-	public void setPrz(JTextField prz) {
-		this.prz = prz;
+	public void setDays(JTextField days) {
+		this.days = days;
 	}
 
-	public JTextField getJmbg() {
-		return jmbg;
+	public JTextField getCn() {
+		return cn;
 	}
 
-	public void setJmbg(JTextField jmbg) {
-		this.jmbg = jmbg;
+	public void setCn(JTextField cn) {
+		this.cn = cn;
 	}
 
-	public JTextField getMesto() {
-		return mesto;
+	public JTextField getOu() {
+		return ou;
 	}
 
-	public void setMesto(JTextField mesto) {
-		this.mesto = mesto;
+	public void setOu(JTextField ou) {
+		this.ou = ou;
 	}
 
-	public JTextField getAdresa() {
-		return adresa;
+	public JTextField getOn() {
+		return on;
 	}
 
-	public void setAdresa(JTextField adresa) {
-		this.adresa = adresa;
+	public void setOn(JTextField on) {
+		this.on = on;
 	}
 
-	public JTextField getBroj() {
-		return broj;
+	public JTextField getL() {
+		return l;
 	}
 
-	public void setBroj(JTextField broj) {
-		this.broj = broj;
+	public void setL(JTextField l) {
+		this.l = l;
+	}
+
+	public JTextField getSt() {
+		return st;
+	}
+
+	public void setSt(JTextField st) {
+		this.st = st;
+	}
+
+	public JTextField getC() {
+		return c;
+	}
+
+	public void setC(JTextField c) {
+		this.c = c;
+	}
+
+	public JTextField getE() {
+		return e;
+	}
+
+	public void setE(JTextField e) {
+		this.e = e;
 	}
 
 	public JComboBox getIzdavalac() {
@@ -161,12 +194,7 @@ public class SertifikatForm extends JDialog{
 		this.izdavalac = izdavalac;
 	}
 
-	public JTextField getCn() {
-		return cn;
-	}
-
-	public void setCn(JTextField cn) {
-		this.cn = cn;
-	}
+	
+	
 
 }
