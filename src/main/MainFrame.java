@@ -18,6 +18,7 @@ import javax.swing.KeyStroke;
 import actions.Akcija1;
 import actions.Akcija2;
 import actions.Akcija3;
+import actions.OpenExportFormAction;
 
 
 public class MainFrame extends JFrame {
@@ -57,6 +58,8 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem ks = new JMenuItem(new Akcija1(null));
 		file.add(ks);
+		JMenuItem exp = new JMenuItem(new OpenExportFormAction());
+		file.add(exp);
 		JMenuItem t = new JMenuItem(new Akcija2(null));
 		tools.add(t);
 		JMenuItem e = new JMenuItem(new Akcija3(null));

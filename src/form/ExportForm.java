@@ -1,6 +1,5 @@
 package form;
 
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.ByteArrayInputStream;
@@ -10,7 +9,6 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -21,30 +19,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import net.miginfocom.swing.MigLayout;
-import security.KeyStoreReader;
-import actions.AddAction;
 import actions.CancelAction;
 import actions.CommitAction;
+import actions.ExportAction;
+import net.miginfocom.swing.MigLayout;
+import security.KeyStoreReader;
 
-
-public class SertifikatForm extends JDialog{
+public class ExportForm extends JDialog{
 	
 	private JButton btnCommit;
-	private JButton btnCancel;
 	private HashMap<String,Certificate> sertifikati = new HashMap<String,Certificate>();
-	private JTextField days = new JTextField(20);
-	private JTextField cn = new JTextField(20);
-	private JTextField ou = new JTextField(20);
-	private JTextField on = new JTextField(20);
-	private JTextField l = new JTextField(20);
-	private JTextField st = new JTextField(20);
-	private JTextField c = new JTextField(20);
-	private JTextField e = new JTextField(20);
 	private JComboBox<String> izdavalac = new JComboBox<String>();
-	private JTextField alias = new JTextField(20);
 
-	public SertifikatForm() throws CertificateException {
+
+	public ExportForm() throws CertificateException {
 		
 		setLayout(new MigLayout("fill"));
 		
@@ -70,40 +58,15 @@ public class SertifikatForm extends JDialog{
 	
 
 		JPanel buttonsPanel = new JPanel();
-		btnCommit = new JButton(new CommitAction(this));
-		btnCancel = new JButton(new CancelAction(this));
+		btnCommit = new JButton(new ExportAction(this));
+
 
 
 		
-		JLabel daysl = new JLabel ("Validity(days):");
-		JLabel cnl = new JLabel("Common Name (CN):");
-		JLabel oul = new JLabel ("Organization unit (OU):");
-		JLabel onl = new JLabel ("Organisation Name (ON):");
-		JLabel ll = new JLabel("Locality Name (L):");
-		JLabel stl = new JLabel("State Name (ST):");
-		JLabel cl = new JLabel("Country (C):");
-		JLabel el = new JLabel("Email (E):");
-		JLabel izdl = new JLabel("Issuer:");
-		JLabel ali  = new JLabel("Alias");
 
-		dataPanel.add(daysl);
-		dataPanel.add(days,"wrap");
-		dataPanel.add(cnl);
-		dataPanel.add(cn,"wrap");
-		dataPanel.add(oul);
-		dataPanel.add(ou,"wrap");
-		dataPanel.add(onl);
-		dataPanel.add(on,"wrap");
-		dataPanel.add(ll);
-		dataPanel.add(l,"wrap");
-		dataPanel.add(stl);
-		dataPanel.add(st,"wrap");
-		dataPanel.add(cl);
-		dataPanel.add(c, "wrap");
-		dataPanel.add(el);
-		dataPanel.add(e, "wrap");
-		dataPanel.add(ali);
-		dataPanel.add(alias,"wrap");
+		JLabel izdl = new JLabel("Sertifikat:");
+	
+
 		dataPanel.add(izdl);
 		
 		dataPanel.add(izdavalac);
@@ -111,12 +74,9 @@ public class SertifikatForm extends JDialog{
 
 		buttonsPanel.setLayout(new MigLayout("wrap"));
 		buttonsPanel.add(btnCommit);
-		buttonsPanel.add(btnCancel);
 		bottomPanel.add(buttonsPanel,"dock east");
 
 		add(bottomPanel, "grow, wrap");
-		izdavalac.addItem("samopotpisan");
-		
 		KeyStoreReader ksr = new KeyStoreReader();
 		
 		File f = new File("./data/sgns.jks");
@@ -149,78 +109,10 @@ public class SertifikatForm extends JDialog{
 	
 	
 
-	public JButton getBtnCancel() {
-		return btnCancel;
-	}
+	
 
-	public void setBtnCancel(JButton btnCancel) {
-		this.btnCancel = btnCancel;
-	}
-
-	public JTextField getDays() {
-		return days;
-	}
-
-	public void setDays(JTextField days) {
-		this.days = days;
-	}
-
-	public JTextField getCn() {
-		return cn;
-	}
-
-	public void setCn(JTextField cn) {
-		this.cn = cn;
-	}
-
-	public JTextField getOu() {
-		return ou;
-	}
-
-	public void setOu(JTextField ou) {
-		this.ou = ou;
-	}
-
-	public JTextField getOn() {
-		return on;
-	}
-
-	public void setOn(JTextField on) {
-		this.on = on;
-	}
-
-	public JTextField getL() {
-		return l;
-	}
-
-	public void setL(JTextField l) {
-		this.l = l;
-	}
-
-	public JTextField getSt() {
-		return st;
-	}
-
-	public void setSt(JTextField st) {
-		this.st = st;
-	}
-
-	public JTextField getC() {
-		return c;
-	}
-
-	public void setC(JTextField c) {
-		this.c = c;
-	}
-
-	public JTextField getE() {
-		return e;
-	}
-
-	public void setE(JTextField e) {
-		this.e = e;
-	}
-
+	
+	
 	public JComboBox getIzdavalac() {
 		return izdavalac;
 	}
@@ -229,13 +121,7 @@ public class SertifikatForm extends JDialog{
 		this.izdavalac = izdavalac;
 	}
 
-	public JTextField getAlias() {
-		return alias;
-	}
 
-	public void setAlias(JTextField alias) {
-		this.alias = alias;
-	}
 
 	public HashMap<String,Certificate> getSertifikati() {
 		return sertifikati;

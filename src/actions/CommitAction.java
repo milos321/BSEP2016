@@ -8,8 +8,14 @@ import security.SubjectData;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.security.KeyPair;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -21,6 +27,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.KeyStroke;
 
+import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
 
@@ -31,8 +38,8 @@ private JDialog standardForm;
 	public CommitAction(JDialog standardForm) {
 		KeyStroke ctrlDKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK);
 		putValue(ACCELERATOR_KEY,ctrlDKeyStroke);
-		putValue(SHORT_DESCRIPTION, "Commit");
-		putValue(NAME, "Commit");
+		putValue(SHORT_DESCRIPTION, "Add");
+		putValue(NAME, "Add");
 		
 		this.standardForm=standardForm;
 	}
@@ -90,6 +97,35 @@ private JDialog standardForm;
 		    	cert = CertificateGenerator.generateCertificate( issuerData,subjData);
 		    	System.out.println("fggfgf");
 		    }
+		    else{
+		    	CertificateFactory certFactory = null;
+				try {
+					certFactory = CertificateFactory.getInstance("X.509");
+				} catch (CertificateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				InputStream in = null;
+				try {
+					in = new ByteArrayInputStream(sertForm.getSertifikati().get(sertForm.getIzdavalac().getSelectedItem().toString()).getEncoded());
+				} catch (CertificateEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				X509Certificate cert2 = null;
+				try {
+					cert2 = (X509Certificate)certFactory.generateCertificate(in);
+				} catch (CertificateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		    	X500Name name = new X500Name(cert2.getIssuerX500Principal().getName());
+		    	IssuerData issuerData = new IssuerData(keyPair.getPrivate(),name);
+		    	cert = CertificateGenerator.generateCertificate( issuerData,subjData);
+		    	System.out.println("NIJE SELF-SIGNED!");
+		    }
+		    
 		    KeyStoreWriter ksw = new KeyStoreWriter();
 		    
 		    File f = new File("./data/sgns.jks");
