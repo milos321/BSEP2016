@@ -13,6 +13,10 @@ import java.security.PrivateKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 
 /**
  * 
@@ -20,44 +24,70 @@ import java.security.cert.CertificateException;
  */
 public class KeyStoreReader {
 
-	private static final String KEY_STORE_FILE = "./data/marija.jks";
-	
-	private char[] password = "test10".toCharArray();
+	private String KEY_STORE_FILE = "./data/marija.jks";
+	private char[] password = "sgns".toCharArray();
 	private char[] keyPass  = "marija1".toCharArray();
+	
+	public char[] getPassword() {
+		return password;
+	}
+
+	public void setPassword(char[] password) {
+		this.password = password;
+	}
+
+	public char[] getKeyPass() {
+		return keyPass;
+	}
+
+	public void setKeyPass(char[] keyPass) {
+		this.keyPass = keyPass;
+	}
+
+	public String getKeyStoreFile() {
+		return KEY_STORE_FILE;
+	}
+	
+	public void setKeyStoreFile(String key_store_file){
+		this.KEY_STORE_FILE= key_store_file;
+	}
+
+
 	
 	
 	public void testIt() {
 		readKeyStore();
 	}
 	
-	private void readKeyStore(){
+	public HashMap<String,Certificate> readKeyStore(){
+		HashMap<String,Certificate> sertifikati = new HashMap<String,Certificate>();
+	
 		try {
+			Enumeration<String> alijasi = null;
 			//kreiramo instancu KeyStore
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			//ucitavamo podatke
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			ks.load(in, password);
+			if(in.available()>0)
+			{
+				ks.load(in, password);
 			//citamo par sertifikat privatni kljuc
-			System.out.println("Cita se Sertifikat i privatni kljuc Marije...");
+				alijasi = ks.aliases();
 			
-			if(ks.isKeyEntry("marija")) {
-				System.out.println("Sertifikat:");
-				Certificate cert = ks.getCertificate("marija");
-				System.out.println(cert);
-				PrivateKey privKey = (PrivateKey)ks.getKey("marija", keyPass);
-				System.out.println("Privatni kljuc:");
-				System.out.println(privKey);
+			while(alijasi.hasMoreElements()){
+				String alijas = alijasi.nextElement();
+				System.out.println("sertifikat za "+alijas+ ":");
+				if(ks.isKeyEntry(alijas)) {
+					Certificate cert = ks.getCertificate(alijas);
+					System.out.println(cert);
+					sertifikati.put(alijas, cert);
+				}
+				else
+					System.out.println("Nema sertifikata za "+alijas);
 			}
-			else
-				System.out.println("Nema para kljuceva za Mariju");
 			
-			System.out.println("Cita sertifikat Jovana");
-			if(ks.isCertificateEntry("jovan")) {
-				Certificate cert = ks.getCertificate("jovan");
-				System.out.println(cert);
 			}
-			else
-				System.out.println("Nema sertifikata za Jovana");
+			in.close();
 		
 		} catch (KeyStoreException e) {
 			e.printStackTrace();
@@ -69,11 +99,11 @@ public class KeyStoreReader {
 			e.printStackTrace();
 		} catch (CertificateException e) {
 			e.printStackTrace();
-		} catch (UnrecoverableKeyException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return sertifikati;
 
 	}
 	
