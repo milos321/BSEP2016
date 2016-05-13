@@ -33,7 +33,14 @@ public class SertifikatForm extends JDialog{
 	private JButton btnCommit;
 	private JButton btnCancel;
 	private HashMap<String,Certificate> sertifikati = new HashMap<String,Certificate>();
-	private JTextField days = new JTextField(20);
+	
+	String[] time={"30","180","365","730","1460"};
+	
+
+
+	private JComboBox<String> days = new JComboBox<String>(time);
+	
+	
 	private JTextField cn = new JTextField(20);
 	private JTextField ou = new JTextField(20);
 	private JTextField on = new JTextField(20);
@@ -72,7 +79,6 @@ public class SertifikatForm extends JDialog{
 		JPanel buttonsPanel = new JPanel();
 		btnCommit = new JButton(new CommitAction(this));
 		btnCancel = new JButton(new CancelAction(this));
-
 
 		
 		JLabel daysl = new JLabel ("Validity(days):");
@@ -156,12 +162,15 @@ public class SertifikatForm extends JDialog{
 	public void setBtnCancel(JButton btnCancel) {
 		this.btnCancel = btnCancel;
 	}
+	
+	
+	
 
-	public JTextField getDays() {
+	public JComboBox getDays() {
 		return days;
 	}
 
-	public void setDays(JTextField days) {
+	public void setDays(JComboBox days) {
 		this.days = days;
 	}
 

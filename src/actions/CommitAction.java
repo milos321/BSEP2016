@@ -61,7 +61,8 @@ private JDialog standardForm;
 			//CN	
 			String cn = sertForm.getCn().getText();
 			//broj dana
-			int brojDana =Integer.parseInt(sertForm.getDays().getText());
+		//	int broj=Integer.valueOf(sertForm.getDays().getText());
+			int brojDana =Integer.parseInt(sertForm.getDays().getSelectedItem().toString());
 			SimpleDateFormat iso8601Formater = new SimpleDateFormat("yyyy-MM-dd");
 			
 			Calendar today = Calendar.getInstance();
