@@ -26,49 +26,49 @@ import net.miginfocom.swing.MigLayout;
 import security.KeyStoreReader;
 
 public class ExportForm extends JDialog{
-	
+
 	private JButton btnCommit;
 	private HashMap<String,Certificate> sertifikati = new HashMap<String,Certificate>();
 	private JComboBox<String> izdavalac = new JComboBox<String>();
 
 
 	public ExportForm() throws CertificateException {
-		
+
 		setLayout(new MigLayout("fill"));
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) (screen.getWidth() * 0.5);
 		int height = (int) (screen.getHeight() * 0.5);
 		this.setSize(width, height);
-	//	setSize(new Dimension(800, 600));
+		//	setSize(new Dimension(800, 600));
 		setTitle("Sertifikat");
 		setLocationRelativeTo(null);
 		setModal(true);
-		
+
 		initGui();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	private void initGui() throws CertificateException{
 
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new MigLayout("fillx"));
 		JPanel dataPanel = new JPanel();
 		dataPanel.setLayout(new MigLayout("gapx 15px"));
-	
+
 
 		JPanel buttonsPanel = new JPanel();
 		btnCommit = new JButton(new ExportAction(this));
 
 
 
-		
+
 
 		JLabel izdl = new JLabel("Sertifikat:");
-	
+
 
 		dataPanel.add(izdl);
-		
+
 		dataPanel.add(izdavalac);
 		bottomPanel.add(dataPanel);
 
@@ -78,25 +78,25 @@ public class ExportForm extends JDialog{
 
 		add(bottomPanel, "grow, wrap");
 		KeyStoreReader ksr = new KeyStoreReader();
-		
-		File f = new File("./data/sgns.jks");
-	    if(f.exists() && !f.isDirectory()) {
-		ksr.setKeyStoreFile("./data/sgns.jks");
-		
-		sertifikati=ksr.readKeyStore();
 
-		Iterator it = sertifikati.values().iterator();
-		Iterator it2 = sertifikati.keySet().iterator();
-		while(it.hasNext())
-		{
-		CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
-		InputStream in = new ByteArrayInputStream(((Certificate) it.next()).getEncoded());
-		X509Certificate cert2 = (X509Certificate)certFactory.generateCertificate(in);
-		izdavalac.addItem(it2.next().toString());
-		
+		File f = new File("./data/sgns.jks");
+		if(f.exists() && !f.isDirectory()) {
+			ksr.setKeyStoreFile("./data/sgns.jks");
+
+			sertifikati=ksr.readKeyStore();
+
+			Iterator it = sertifikati.values().iterator();
+			Iterator it2 = sertifikati.keySet().iterator();
+			while(it.hasNext())
+			{
+				CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+				InputStream in = new ByteArrayInputStream(((Certificate) it.next()).getEncoded());
+				X509Certificate cert2 = (X509Certificate)certFactory.generateCertificate(in);
+				izdavalac.addItem(it2.next().toString());
+
+			}
 		}
-	    }
-		
+
 	}
 
 	public JButton getBtnCommit() {
@@ -106,13 +106,13 @@ public class ExportForm extends JDialog{
 	public void setBtnCommit(JButton btnCommit) {
 		this.btnCommit = btnCommit;
 	}
-	
-	
 
-	
 
-	
-	
+
+
+
+
+
 	public JComboBox getIzdavalac() {
 		return izdavalac;
 	}
@@ -131,7 +131,7 @@ public class ExportForm extends JDialog{
 		this.sertifikati = sertifikati;
 	}
 
-	
-	
+
+
 
 }

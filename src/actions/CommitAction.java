@@ -60,6 +60,9 @@ private JDialog standardForm;
 			String ou = sertForm.getOu().getText();
 			//CN	
 			String cn = sertForm.getCn().getText();
+			//Alias
+			String al=sertForm.getAlias().getText();
+			
 			//broj dana
 		//	int broj=Integer.valueOf(sertForm.getDays().getText());
 			int brojDana =Integer.parseInt(sertForm.getDays().getSelectedItem().toString());
@@ -128,7 +131,7 @@ private JDialog standardForm;
 		    }
 		    
 		    KeyStoreWriter ksw = new KeyStoreWriter();
-		    
+		    //ovde smestamo sve
 		    File f = new File("./data/sgns.jks");
 		    if(!f.exists() || f.isDirectory()) { 
 		    	ksw.loadKeyStore(null,"sgns".toCharArray());
@@ -137,6 +140,17 @@ private JDialog standardForm;
 		    
 		    ksw.write(sertForm.getAlias().getText(), keyPair.getPrivate(), "test10".toCharArray(), cert);
 			ksw.saveKeyStore("./data/sgns.jks", "sgns".toCharArray());
+			
+			//ovde u svaki pojedinacno
+			
+			File pojedinacni = new File("./data/"+al+".jks");
+		    if(!pojedinacni.exists() || pojedinacni.isDirectory()) { 
+		    	ksw.loadKeyStore(null,al.toCharArray());
+		    }
+		    else ksw.loadKeyStore("./data/"+al+".jks",al.toCharArray());
+		    
+		    ksw.write(sertForm.getAlias().getText(), keyPair.getPrivate(), "test10".toCharArray(), cert);
+			ksw.saveKeyStore("./data/"+al+".jks", al.toCharArray());
 		   
 		}
 		standardForm.dispose();
