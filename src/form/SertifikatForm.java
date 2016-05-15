@@ -124,7 +124,8 @@ public class SertifikatForm extends JDialog{
 		izdavalac.addItem("samopotpisan");
 
 		KeyStoreReader ksr = new KeyStoreReader();
-
+		
+		//za popunjavanje combo-boxa
 		File f = new File("./data/sgns.jks");
 		if(f.exists() && !f.isDirectory()) {
 			ksr.setKeyStoreFile("./data/sgns.jks");
@@ -153,8 +154,6 @@ public class SertifikatForm extends JDialog{
 		this.btnCommit = btnCommit;
 	}
 
-
-
 	public JButton getBtnCancel() {
 		return btnCancel;
 	}
@@ -162,9 +161,6 @@ public class SertifikatForm extends JDialog{
 	public void setBtnCancel(JButton btnCancel) {
 		this.btnCancel = btnCancel;
 	}
-
-
-
 
 	public JComboBox getDays() {
 		return days;

@@ -98,7 +98,7 @@ private JDialog standardForm;
 		    if(sertForm.getIzdavalac().getSelectedItem().equals("samopotpisan"))
 		    {
 		    	IssuerData issuerData = new IssuerData(keyPair.getPrivate(),builder.build());
-		    	cert = CertificateGenerator.generateCertificate( issuerData,subjData);
+		    	cert = CertificateGenerator.generateCertificate(issuerData,subjData);
 		    	System.out.println("fggfgf");
 		    }
 		    else{

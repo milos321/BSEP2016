@@ -13,7 +13,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
-import actions.Akcija1;
+import actions.NewKeystoreAction;
 import actions.Akcija2;
 import actions.Akcija3;
 import actions.AddAction;
@@ -32,7 +32,7 @@ public class MyToolBar extends JToolBar{
 
 		button = new JButton(new ImageIcon(getClass().getResource("/slike/search.gif")));
 		button.setToolTipText("1");
-		button.addActionListener(new Akcija1(dialog));
+		button.addActionListener(new NewKeystoreAction(dialog));
 		this.add(button);
 		
 		addSeparator();

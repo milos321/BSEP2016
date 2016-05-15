@@ -15,7 +15,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import actions.Akcija1;
+import actions.ImportAction;
+import actions.NewKeystoreAction;
 import actions.Akcija2;
 import actions.Akcija3;
 import actions.OpenExportFormAction;
@@ -56,8 +57,10 @@ public class MainFrame extends JFrame {
 		JMenu ex = new JMenu("Examine");
 		JMenu help = new JMenu("Help");
 		
-		JMenuItem ks = new JMenuItem(new Akcija1(null));
+		JMenuItem ks = new JMenuItem(new NewKeystoreAction(null));
 		file.add(ks);
+		JMenuItem imp = new JMenuItem(new ImportAction(null));
+		file.add(imp);
 		JMenuItem exp = new JMenuItem(new OpenExportFormAction());
 		file.add(exp);
 		JMenuItem t = new JMenuItem(new Akcija2(null));

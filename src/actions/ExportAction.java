@@ -27,7 +27,7 @@ public class ExportAction extends AbstractAction {
 	private ExportForm form;
 	
 	public ExportAction(ExportForm form) {
-		KeyStroke ctrlDKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK);
+		KeyStroke ctrlDKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK);
 		putValue(ACCELERATOR_KEY,ctrlDKeyStroke);
 		putValue(SHORT_DESCRIPTION, "Export");
 		putValue(NAME, "Export");
@@ -75,7 +75,10 @@ public class ExportAction extends AbstractAction {
 	            e.printStackTrace();
 	        }
 	       
+	        form.dispose();
 	    }
+	
+	
 
 
 }

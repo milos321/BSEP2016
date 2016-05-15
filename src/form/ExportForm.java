@@ -78,7 +78,8 @@ public class ExportForm extends JDialog{
 
 		add(bottomPanel, "grow, wrap");
 		KeyStoreReader ksr = new KeyStoreReader();
-
+		
+		//za popunjavanje combo-boxa
 		File f = new File("./data/sgns.jks");
 		if(f.exists() && !f.isDirectory()) {
 			ksr.setKeyStoreFile("./data/sgns.jks");

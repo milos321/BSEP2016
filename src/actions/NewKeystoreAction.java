@@ -9,11 +9,11 @@ import javax.swing.JDialog;
 import javax.swing.KeyStroke;
 
 @SuppressWarnings("serial")
-public class Akcija1 extends AbstractAction {
+public class NewKeystoreAction extends AbstractAction {
 	
 	private JDialog standardForm;
 	
-	public Akcija1(JDialog standardForm) {
+	public NewKeystoreAction(JDialog standardForm) {
 		KeyStroke ctrlDKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK);
 		putValue(ACCELERATOR_KEY,ctrlDKeyStroke);
 		putValue(SHORT_DESCRIPTION, "New Keystore");
