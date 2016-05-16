@@ -11,12 +11,15 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JTable;
 import javax.swing.KeyStroke;
 
 import main.MainFrame;
@@ -63,6 +66,16 @@ public class ImportAction extends AbstractAction {
 				String alias=cert.toString();
 				
 				System.out.print(alias);
+				
+				String str="121";
+				
+				
+				MainFrame mfr = null;
+				if(mfr==null){
+					mfr=new MainFrame();
+				}
+				mfr.add(str);
+			    
 	
 				
 		

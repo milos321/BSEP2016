@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 import actions.ImportAction;
 import actions.NewKeystoreAction;
@@ -33,8 +35,10 @@ public class MainFrame extends JFrame {
 	private static MainFrame frame = null;
 	private JMenuBar menuBar;
 	private MyToolBar toolbar;
+	public  JTable table;
+	 DefaultTableModel model;
 
-	private MainFrame() {
+	public MainFrame() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		setTitle("Bezbednost");
 		int width = (int) (screen.getWidth() * 0.5);
@@ -84,7 +88,7 @@ public class MainFrame extends JFrame {
 
 	}
 
-	public void initTable(){
+	public JTable initTable(){
 		
 		
 		Vector rowData = new Vector();
@@ -95,7 +99,7 @@ public class MainFrame extends JFrame {
 		
 		System.out.print(date);
 		
-//		if(alias!=null)
+		/*if(alias!=null)
 	    for (int i = 0; i < 1; i++) {
 	      Vector colData = new Vector(Arrays.asList("qq","qq"));
 	      rowData.add(colData);
@@ -103,18 +107,54 @@ public class MainFrame extends JFrame {
 	    
 	    String[] columnNames = {"Alias name","Last Modified"};
 	    
-	    Vector columnNamesV = new Vector(Arrays.asList(columnNames));
+	    Vector columnNamesV = new Vector(Arrays.asList(columnNames));*/
 
-	    JTable table = new JTable(rowData, columnNamesV);
+	    model = new DefaultTableModel(); 
+	    
+	    table = new JTable(model);
+	    
+	    model.addColumn("Alias name"); 
+	    model.addColumn("Last Modified"); 
+
+	 
+	    model.addRow(new Object[]{"5", date});
+	    
+	  
 	    
 	  //Dozvoljeno selektovanje redova
 	    table.setRowSelectionAllowed(true);
 	  //Ali ne i selektovanje kolona 
 	    table.setColumnSelectionAllowed(false);
 	    
+	    table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    table.setRowSelectionInterval(0, 0);
+	    
 	    JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane);
 
+		return table;
 
+	}
+	
+	public void add(String alias){
+		
+		System.out.print("KKKKKKKKKKK");
+		
+		Calendar today = Calendar.getInstance();
+		today.setTime(new Date());
+		Date date = today.getTime();
+		
+		DefaultTableModel model =(DefaultTableModel) table.getModel();
+		
+		model.setRowCount(0);
+		 
+		 model.addRow(new Object[]{alias, date});
+		 System.out.print(  alias);
+		 
+		 table.setModel(model);
+		 
+		 model.fireTableDataChanged();
+		 
+		 System.out.print("ZZZZZZZZZ");
 	}
 }
