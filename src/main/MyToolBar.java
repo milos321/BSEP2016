@@ -24,7 +24,6 @@ public class MyToolBar extends JToolBar{
 
 
 
-	@SuppressWarnings("static-access")
 	public MyToolBar(JDialog dialog) {
 		super(SwingConstants.HORIZONTAL);
 

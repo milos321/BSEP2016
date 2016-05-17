@@ -83,7 +83,16 @@ public class KeyStoreReader {
 					sertifikati.put(alijas, cert);
 				}
 				else
+					//System.out.println("Nema sertifikata za "+alijas);
+				//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				if(ks.isCertificateEntry(alijas)) {
+					Certificate cert = ks.getCertificate(alijas);
+					System.out.println(cert);
+					sertifikati.put(alijas, cert);
+				}
+				else
 					System.out.println("Nema sertifikata za "+alijas);
+				
 			}
 			
 			}

@@ -5,10 +5,16 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.security.KeyStore;
+import java.security.cert.Certificate;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -28,6 +34,8 @@ import actions.NewKeystoreAction;
 import actions.Akcija2;
 import actions.Akcija3;
 import actions.OpenExportFormAction;
+import actions.OpenKeystoreAction;
+import security.KeyStoreReader;
 
 
 public class MainFrame extends JFrame {
@@ -37,6 +45,8 @@ public class MainFrame extends JFrame {
 	private MyToolBar toolbar;
 	public  JTable table;
 	 DefaultTableModel model;
+	public static String key_store_name="./data/sgns.jks";
+	public static char[] key_store_pass="sgns".toCharArray();
 
 	public MainFrame() {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -74,6 +84,8 @@ public class MainFrame extends JFrame {
 		file.add(imp);
 		JMenuItem exp = new JMenuItem(new OpenExportFormAction());
 		file.add(exp);
+		JMenuItem openKS = new JMenuItem(new OpenKeystoreAction());
+		file.add(openKS);
 		JMenuItem t = new JMenuItem(new Akcija2(null));
 		tools.add(t);
 		JMenuItem e = new JMenuItem(new Akcija3(null));
@@ -131,6 +143,21 @@ public class MainFrame extends JFrame {
 	    
 	    JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane);
+		
+		HashMap<String,Certificate> sertifikati = new HashMap<String,Certificate>();
+		File f = new File(key_store_name);
+		KeyStoreReader ksr = new KeyStoreReader();
+		if(f.exists() && !f.isDirectory()) {
+		
+			ksr.setKeyStoreFile(f.getPath());
+			ksr.setPassword(key_store_pass);
+			
+
+			sertifikati=ksr.readKeyStore();
+			
+		}
+		setAliases(sertifikati.keySet());
+		
 
 		return table;
 
@@ -144,17 +171,38 @@ public class MainFrame extends JFrame {
 		today.setTime(new Date());
 		Date date = today.getTime();
 		
-		DefaultTableModel model =(DefaultTableModel) table.getModel();
+		//DefaultTableModel model =(DefaultTableModel) table.getModel();
 		
-		model.setRowCount(0);
-		 
 		 model.addRow(new Object[]{alias, date});
 		 System.out.print(  alias);
 		 
-		 table.setModel(model);
+		// table.setModel(model);
 		 
 		 model.fireTableDataChanged();
 		 
 		 System.out.print("ZZZZZZZZZ");
+	}
+
+	public void setAliases(Set<String> keySet) {
+		// TODO Auto-generated method stub
+		
+		Iterator it = keySet.iterator();
+		
+		Calendar today = Calendar.getInstance();
+		today.setTime(new Date());
+		Date date = today.getTime();
+		
+		//DefaultTableModel model =(DefaultTableModel) table.getModel();
+		
+		model.setRowCount(0);
+		 while(it.hasNext()){
+		 model.addRow(new Object[]{it.next().toString(), date});
+		 
+		 }
+		 
+		// table.setModel(model);
+		 
+		 model.fireTableDataChanged();
+		 
 	}
 }
