@@ -14,7 +14,7 @@ public class NewKeystoreAction extends AbstractAction {
 	private JDialog standardForm;
 	
 	public NewKeystoreAction(JDialog standardForm) {
-		KeyStroke ctrlDKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK);
+		KeyStroke ctrlDKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.CTRL_MASK);
 		putValue(ACCELERATOR_KEY,ctrlDKeyStroke);
 		putValue(SHORT_DESCRIPTION, "New Keystore");
 		putValue(NAME, "New Keystore");

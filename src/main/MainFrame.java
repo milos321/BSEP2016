@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import actions.ImportAction;
 import actions.NewKeystoreAction;
 import actions.Akcija2;
-import actions.Akcija3;
+import actions.RemoveAction;
 import actions.OpenExportFormAction;
 import actions.OpenKeystoreAction;
 import security.KeyStoreReader;
@@ -44,7 +45,7 @@ public class MainFrame extends JFrame {
 	private JMenuBar menuBar;
 	private MyToolBar toolbar;
 	public  JTable table;
-	 DefaultTableModel model;
+	DefaultTableModel model;
 	public static String key_store_name="./data/sgns.jks";
 	public static char[] key_store_pass="sgns".toCharArray();
 
@@ -88,7 +89,7 @@ public class MainFrame extends JFrame {
 		file.add(openKS);
 		JMenuItem t = new JMenuItem(new Akcija2(null));
 		tools.add(t);
-		JMenuItem e = new JMenuItem(new Akcija3(null));
+		JMenuItem e = new JMenuItem(new RemoveAction(null));
 		ex.add(e);
 
 
@@ -101,108 +102,117 @@ public class MainFrame extends JFrame {
 	}
 
 	public JTable initTable(){
-		
-		
+
+
 		Vector rowData = new Vector();
-		
-		Calendar today = Calendar.getInstance();
-		today.setTime(new Date());
-		Date date = today.getTime();
-		
-		System.out.print(date);
-		
-		/*if(alias!=null)
-	    for (int i = 0; i < 1; i++) {
-	      Vector colData = new Vector(Arrays.asList("qq","qq"));
-	      rowData.add(colData);
-	    }
-	    
-	    String[] columnNames = {"Alias name","Last Modified"};
-	    
-	    Vector columnNamesV = new Vector(Arrays.asList(columnNames));*/
 
-	    model = new DefaultTableModel(); 
-	    
-	    table = new JTable(model);
-	    
-	    model.addColumn("Alias name"); 
-	    model.addColumn("Last Modified"); 
+		model = new DefaultTableModel(); 
 
-	 
-	    model.addRow(new Object[]{"5", date});
-	    
-	  
-	    
-	  //Dozvoljeno selektovanje redova
-	    table.setRowSelectionAllowed(true);
-	  //Ali ne i selektovanje kolona 
-	    table.setColumnSelectionAllowed(false);
-	    
-	    table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	    table.setRowSelectionInterval(0, 0);
-	    
-	    JScrollPane scrollPane = new JScrollPane(table);
+		table = new JTable(model);
+
+		model.addColumn("Alias name"); 
+		model.addColumn("Last Modified"); 
+
+
+		//	model.addRow(new Object[]{"aasdsads", date});
+
+		//Dozvoljeno selektovanje redova
+		table.setRowSelectionAllowed(true);
+		//Ali ne i selektovanje kolona 
+		table.setColumnSelectionAllowed(false);
+
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//	table.setRowSelectionInterval(0, 0);
+
+		JScrollPane scrollPane = new JScrollPane(table);
 		add(scrollPane);
-		
+
 		HashMap<String,Certificate> sertifikati = new HashMap<String,Certificate>();
 		File f = new File(key_store_name);
 		KeyStoreReader ksr = new KeyStoreReader();
 		if(f.exists() && !f.isDirectory()) {
-		
+
 			ksr.setKeyStoreFile(f.getPath());
 			ksr.setPassword(key_store_pass);
-			
+
 
 			sertifikati=ksr.readKeyStore();
-			
+
 		}
-		setAliases(sertifikati.keySet());
-		
+	//	setAliases(sertifikati.keySet());
+
 
 		return table;
 
 	}
-	
+
 	public void add(String alias){
-		
-		System.out.print("KKKKKKKKKKK");
-		
+
+
 		Calendar today = Calendar.getInstance();
 		today.setTime(new Date());
 		Date date = today.getTime();
-		
-		//DefaultTableModel model =(DefaultTableModel) table.getModel();
-		
-		 model.addRow(new Object[]{alias, date});
-		 System.out.print(  alias);
-		 
-		// table.setModel(model);
-		 
-		 model.fireTableDataChanged();
-		 
-		 System.out.print("ZZZZZZZZZ");
+
+		String str=alias.toString();
+		int duzina=str.length();
+		int konacno=duzina - 4; //bez .cer
+
+		model.addRow(new Object[]{str.substring(0, konacno), date});
+	//	model.addRow(new Object[]{alias, date});
+
+		model.fireTableDataChanged();
+
+	}
+
+	public void remove(){
+
+		int index=table.getSelectedRow();
+
+		if (index == -1) //Ako nema selektovanog reda (tabela prazna)
+			return; // izlazak
+		//kada obrisemo tekuci red, selektovacemo sledeci (newindex):
+		int newIndex = index;
+		//sem ako se obrise poslednji red, tada selektujemo prethodni
+		if (index == model.getRowCount() - 1)
+			newIndex--;
+
+		model.removeRow(index);
+		if (model.getRowCount() > 0)
+			table.setRowSelectionInterval(newIndex, newIndex);
 	}
 
 	public void setAliases(Set<String> keySet) {
 		// TODO Auto-generated method stub
-		
+
 		Iterator it = keySet.iterator();
-		
+
 		Calendar today = Calendar.getInstance();
 		today.setTime(new Date());
 		Date date = today.getTime();
-		
-		//DefaultTableModel model =(DefaultTableModel) table.getModel();
-		
+
 		model.setRowCount(0);
-		 while(it.hasNext()){
-		 model.addRow(new Object[]{it.next().toString(), date});
-		 
-		 }
-		 
-		// table.setModel(model);
-		 
-		 model.fireTableDataChanged();
-		 
+		while(it.hasNext()){
+			String str=it.next().toString();
+			String provera;
+			if(str.length()>4){
+				provera=str.substring(str.length()-4, str.length());
+				System.out.print(provera);
+				if(provera.contains(".cer")){
+					int duzina=str.length();
+					int konacno=duzina - 4; //bez .cer
+					//ispisuje string bez .cer ekstenzije
+					model.addRow(new Object[]{str.substring(0, konacno), date}); 
+				}else{
+					model.addRow(new Object[]{str, date});
+				}
+			}else{
+				model.addRow(new Object[]{str, date});
+			}
+
+		}
+
+
+		model.fireTableDataChanged();
+
 	}
 }

@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 
 import actions.NewKeystoreAction;
 import actions.Akcija2;
-import actions.Akcija3;
+import actions.RemoveAction;
 import actions.AddAction;
 
 
@@ -43,15 +43,15 @@ public class MyToolBar extends JToolBar{
 		
 		addSeparator();
 
-		button = new JButton(new ImageIcon(getClass().getResource("/slike/zoom-pickup.gif")));
+		button = new JButton(new ImageIcon(getClass().getResource("/slike/remove.gif")));
 		button.setToolTipText("3");
-		button.addActionListener(new Akcija3(dialog));
+		button.addActionListener(new RemoveAction(dialog));
 		this.add(button);
 		
 		addSeparator();
 
 		button = new JButton(new ImageIcon(getClass().getResource("/slike/add.gif")));
-		button.setToolTipText("3");
+		button.setToolTipText("4");
 		button.addActionListener(new AddAction(dialog));
 		this.add(button);
 		

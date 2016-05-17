@@ -70,6 +70,7 @@ public class ImportAction extends AbstractAction {
 				Certificate cert =  cf.generateCertificate(bis);		
 				String alias=jfc.getSelectedFile().getName();	
 				MainFrame.getInstance().add(alias);
+				
 			    System.out.println(MainFrame.key_store_name);
 			    System.out.println(MainFrame.key_store_pass);
 			    System.out.println(alias);

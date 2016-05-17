@@ -16,7 +16,7 @@ public class OpenExportFormAction extends AbstractAction {
 	private JDialog standardForm;
 	
 	public OpenExportFormAction() {
-		KeyStroke ctrlDKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK);
+		KeyStroke ctrlDKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK);
 		putValue(ACCELERATOR_KEY,ctrlDKeyStroke);
 		putValue(SHORT_DESCRIPTION, "Export");
 		putValue(NAME, "Export");
