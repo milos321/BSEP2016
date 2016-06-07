@@ -32,6 +32,8 @@ import javax.swing.table.DefaultTableModel;
 
 import actions.ImportAction;
 import actions.NewKeystoreAction;
+import actions.OpenAddToCrlAction;
+import actions.AddToCrlAction;
 import actions.Akcija2;
 import actions.RemoveAction;
 import actions.OpenExportFormAction;
@@ -87,6 +89,8 @@ public class MainFrame extends JFrame {
 		file.add(exp);
 		JMenuItem openKS = new JMenuItem(new OpenKeystoreAction());
 		file.add(openKS);
+		JMenuItem addToCrl = new JMenuItem(new OpenAddToCrlAction());
+		file.add(addToCrl);
 		JMenuItem t = new JMenuItem(new Akcija2(null));
 		tools.add(t);
 		JMenuItem e = new JMenuItem(new RemoveAction(null));

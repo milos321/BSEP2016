@@ -5,6 +5,7 @@ import security.CertificateGenerator;
 import security.IssuerData;
 import security.KeyStoreWriter;
 import security.SubjectData;
+import util.FileWriterReader;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -87,12 +88,14 @@ private JDialog standardForm;
 		    builder.addRDN(BCStyle.C, c);
 		    //builder.addRDN(BCStyle.E, "sladicg@uns.ac.rs");
 		    //UID (USER ID) je ID korisnika
+		    Integer id = FileWriterReader.read("id.txt");
 		    //ajde da ovo za pocetak ne bude promenljivo...
-		    builder.addRDN(BCStyle.UID, "123445");
+		    builder.addRDN(BCStyle.UID, id.toString());
 		    KeyPair keyPair = CertificateGenerator.generateKeyPair();
 		    //Serijski broj sertifikata
-		    //ovo bi trebalo da se inkrementira, a?
-			String sn="1";
+			String sn=id.toString();
+			id++;
+			FileWriterReader.write("id.txt", id);
 		    SubjectData subjData = new SubjectData(keyPair.getPublic(),builder.build(),sn,startDate,endDate);
 		    X509Certificate cert = null;
 		    if(sertForm.getIzdavalac().getSelectedItem().equals("samopotpisan"))
@@ -127,6 +130,7 @@ private JDialog standardForm;
 		    	X500Name name = new X500Name(cert2.getSubjectX500Principal().getName());
 		    	IssuerData issuerData = new IssuerData(keyPair.getPrivate(),name);
 		    	cert = CertificateGenerator.generateCertificate( issuerData,subjData);
+		    	
 		    	System.out.println("NIJE SELF-SIGNED!");
 		    }
 		    
