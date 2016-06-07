@@ -10,6 +10,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.KeyStroke;
 
+//Akcija
 public class AddAction extends AbstractAction{
 
 private JDialog standardForm;
