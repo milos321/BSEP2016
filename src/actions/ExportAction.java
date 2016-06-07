@@ -16,7 +16,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.KeyStroke;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+//import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 import form.ExportForm;
 import form.SertifikatForm;

@@ -124,7 +124,7 @@ private JDialog standardForm;
 					e.printStackTrace();
 				}
 				
-		    	X500Name name = new X500Name(cert2.getIssuerX500Principal().getName());
+		    	X500Name name = new X500Name(cert2.getSubjectX500Principal().getName());
 		    	IssuerData issuerData = new IssuerData(keyPair.getPrivate(),name);
 		    	cert = CertificateGenerator.generateCertificate( issuerData,subjData);
 		    	System.out.println("NIJE SELF-SIGNED!");
