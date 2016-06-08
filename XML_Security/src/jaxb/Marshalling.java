@@ -10,6 +10,8 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 
+import util.FilePaths;
+
  
 /** 
  * Primer 2.
@@ -31,7 +33,7 @@ public class Marshalling {
 			// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			Korisnici Korisnici = (Korisnici) unmarshaller.unmarshal(new File("C:/Users/Milos/Documents/Github/repoPrj/XML_Security/xml/korisnici.xml"));
+			Korisnici Korisnici = (Korisnici) unmarshaller.unmarshal(new File(FilePaths.korisnici));
 			
 			// Izmena nad objektnim modelom dodavanjem novog odseka
 			Korisnici.getKorisnik().add(korisnik);
@@ -43,7 +45,7 @@ public class Marshalling {
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			
 			// Umesto System.out-a, može se koristiti FileOutputStream
-			marshaller.marshal(Korisnici, new File("C:/Users/Milos/Documents/Github/repoPrj/XML_Security/xml/korisnici.xml"));
+			marshaller.marshal(Korisnici, new File(FilePaths.korisnici));
 			marshaller.marshal(Korisnici, System.out);
 			
 			

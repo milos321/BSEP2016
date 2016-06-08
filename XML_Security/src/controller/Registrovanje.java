@@ -1,6 +1,8 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,6 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jaxb.Marshalling;
+import security.SignEnveloped;
+import util.FilePaths;
+import util.FileWriterReader;
+import util.Util;
+import xquery.XMLWriter;
 import jaxb.Korisnik;
 
 /**
@@ -53,6 +60,7 @@ public class Registrovanje extends HttpServlet {
 		String ime = request.getParameter("ime");
 		String prezime = request.getParameter("prezime");
 		String email = request.getParameter("email");
+		String certificate = request.getParameter("certificate");
 		
 	//	ServletContext context=getServletContext();
 		
@@ -65,6 +73,15 @@ public class Registrovanje extends HttpServlet {
 			    kor.setPrezime(prezime);
 			    kor.setUloga("gradjanin");
 			    kor.setEmail(email);
+			    
+			    Integer rbr = FileWriterReader.read("rbr.txt");
+			    
+			    kor.setRbrPoruke(rbr);
+			    rbr++;
+			    FileWriterReader.write("rbr.txt", rbr);
+			    
+			    Date date = new Date();
+			    kor.setTimeStamp(date.toString());
 			    	Marshalling marsh = new Marshalling();
 			    	try {
 						marsh.test(kor);
@@ -72,9 +89,21 @@ public class Registrovanje extends HttpServlet {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-			    	RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
-					disp.forward(request, response);
-			   
+			    	
+			    if(new File(FilePaths.keystores+certificate+".jks").exists()){
+			    SignEnveloped sign = new SignEnveloped();
+			    sign.setIN_FILE(FilePaths.korisnici);
+			    sign.setOUT_FILE(FilePaths.korisnici);
+			    sign.setKEY_STORE_FILE(FilePaths.keystores+certificate+".jks");
+			    sign.setName(certificate);
+			    sign.setPass(certificate);
+			    sign.testIt();
+			    }
+			    
+			    XMLWriter.run(Util.loadProperties());
+			   	RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
+				disp.forward(request, response);
+			    
 			    
 		}else{
 			RequestDispatcher disp = request.getRequestDispatcher("korisnik_register.jsp");

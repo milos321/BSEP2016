@@ -50,6 +50,11 @@
 			                        	<label class="sr-only" for="">E-mail</label>
 			                        	<input type="text" name="email" placeholder="E-mail" class=" form-control" id="">
 			                        </div>
+			                        
+			                         <div class="form-group">
+			                        	<label class="sr-only" for="">Certificate</label>
+			                        	<input type="text" name="certificate" placeholder="Certificate" class=" form-control" id="">
+			                        </div>
 			               
 			                        <button type="submit" class="btn">Registruj se!</button>
 			                    </form>

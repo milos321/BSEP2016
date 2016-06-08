@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import util.FilePaths;
 import util.Util;
 import util.Util.ConnectionProperties;
 
@@ -54,11 +55,11 @@ public class XMLWriter {
 		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 		
 		// Define a URI value for a document.
-		String docId = "/probaaa3.xml";
+		String docId = "/korisnici.xml";
 		String testDocId = "./data/probaaa3.xml";
 		
 		// Create an input stream handle to hold XML content.
-		InputStreamHandle handle = new InputStreamHandle(new FileInputStream("xml/probaaa.xml"));
+		InputStreamHandle handle = new InputStreamHandle(new FileInputStream(FilePaths.korisnici));
 		
 		// Write the document to the database
 		System.out.println("[INFO] Inserting \"" + docId + "\" to \"" + props.database + "\" database.");
@@ -66,14 +67,14 @@ public class XMLWriter {
 		
 		// Write the same document with a new id 
 		System.out.println("[INFO] Inserting \"" + testDocId + "\" to \"" + props.database + "\" database.");
-		handle = new InputStreamHandle(new FileInputStream("xml/probaaa.xml"));
-		xmlManager.write(testDocId, handle);
+		//handle = new InputStreamHandle(new FileInputStream("xml/probaaa.xml"));
+		//xmlManager.write(testDocId, handle);
 		
 		// Document deletion
-		System.out.println("[INFO] Removing \"" + testDocId + "\" from \"" + props.database + "\" database.");
-		xmlManager.delete(testDocId);
+	//	System.out.println("[INFO] Removing \"" + testDocId + "\" from \"" + props.database + "\" database.");
+	//	xmlManager.delete(testDocId);
 		
-		System.out.println("[INFO] Verify the content at: http://" + props.host + ":8000/v1/documents?database=" + props.database + "&uri=" + docId);
+	//	System.out.println("[INFO] Verify the content at: http://" + props.host + ":8000/v1/documents?database=" + props.database + "&uri=" + docId);
 		// Release the client
 		client.release();
 		

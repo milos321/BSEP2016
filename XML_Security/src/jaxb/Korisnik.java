@@ -45,7 +45,9 @@ import javax.xml.bind.annotation.XmlType;
     "ime",
     "prezime",
     "uloga",
-    "email"
+    "email",
+    "timeStamp",
+    "rbrPoruke"
 })
 public class Korisnik {
 
@@ -61,8 +63,16 @@ public class Korisnik {
     protected String uloga;
     @XmlElement(name = "Email", required = true)
     protected String email;
+    @XmlElement(name = "TimeStamp", required = true)
+    protected String timeStamp;
+   
 
-    /**
+	@XmlElement(name="RbrPoruke", required = true)
+    protected Integer rbrPoruke;
+
+   
+
+	/**
      * Gets the value of the korisnickoIme property.
      * 
      * @return
@@ -205,5 +215,21 @@ public class Korisnik {
     public void setEmail(String value) {
         this.email = value;
     }
+    
+    public String getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+	
+	 public Integer getRbrPoruke() {
+			return rbrPoruke;
+		}
+
+	public void setRbrPoruke(Integer rbrPoruke) {
+			this.rbrPoruke = rbrPoruke;
+		}
 
 }

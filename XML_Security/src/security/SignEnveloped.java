@@ -45,11 +45,15 @@ import org.xml.sax.SAXException;
 //Potpisuje dokument, koristi se enveloped tip
 public class SignEnveloped {
 	
-	private static final String IN_FILE = "./xml/akt.xml";
-	private static final String OUT_FILE = "./xml/akt_sign.xml";
-	private static final String KEY_STORE_FILE = "./data/mili.jks";
+	public  String IN_FILE = "./xml/akt.xml";
+	public  String OUT_FILE = "./xml/akt_sign.xml";
+	public  String KEY_STORE_FILE = "./data/mili.jks";
+	public  String pass;
+	public  String name;
 	
-    static {
+
+
+	static {
     	//staticka inicijalizacija
         Security.addProvider(new BouncyCastleProvider());
         org.apache.xml.security.Init.init();
@@ -141,10 +145,10 @@ public class SignEnveloped {
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			//ucitavamo podatke
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			ks.load(in, "mili".toCharArray());
+			ks.load(in, pass.toCharArray());
 			
-			if(ks.isKeyEntry("mili")) {
-				Certificate cert = ks.getCertificate("mili");
+			if(ks.isKeyEntry(name)) {
+				Certificate cert = ks.getCertificate(name);
 				return cert;
 				
 			}
@@ -182,10 +186,10 @@ public class SignEnveloped {
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			//ucitavamo podatke
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			ks.load(in, "mili".toCharArray());
+			ks.load(in, pass.toCharArray());
 			
-			if(ks.isKeyEntry("mili")) {
-				PrivateKey pk = (PrivateKey) ks.getKey("mili", "test10".toCharArray());
+			if(ks.isKeyEntry(name)) {
+				PrivateKey pk = (PrivateKey) ks.getKey(name, "test10".toCharArray());
 				return pk;
 			}
 			else
@@ -219,6 +223,7 @@ public class SignEnveloped {
         
         try {
 			Element rootEl = doc.getDocumentElement();
+			rootEl = (Element) rootEl.getElementsByTagName("Korisnik").item(rootEl.getElementsByTagName("Korisnik").getLength()-1);
 			
 			//kreira se signature objekat
 			XMLSignature sig = new XMLSignature(doc, null, XMLSignature.ALGO_ID_SIGNATURE_RSA_SHA1);
@@ -266,4 +271,44 @@ public class SignEnveloped {
 		sign.testIt();
 	}
 
+	
+	public String getIN_FILE() {
+		return IN_FILE;
+	}
+
+	public void setIN_FILE(String iN_FILE) {
+		IN_FILE = iN_FILE;
+	}
+
+	public String getOUT_FILE() {
+		return OUT_FILE;
+	}
+
+	public void setOUT_FILE(String oUT_FILE) {
+		OUT_FILE = oUT_FILE;
+	}
+
+	public String getKEY_STORE_FILE() {
+		return KEY_STORE_FILE;
+	}
+
+	public void setKEY_STORE_FILE(String kEY_STORE_FILE) {
+		KEY_STORE_FILE = kEY_STORE_FILE;
+	}
+	
+    public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
