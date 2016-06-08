@@ -16,4 +16,12 @@
         <Uloga>predsednik</Uloga>
         <Email>m@gmail.com</Email>
     </Korisnik>
+    <Korisnik>
+        <KorisnickoIme>milos321</KorisnickoIme>
+        <Lozinka>milossavic</Lozinka>
+        <Ime>milos</Ime>
+        <Prezime>savic</Prezime>
+        <Uloga>gradjanin</Uloga>
+        <Email>ddsss@ssss.com</Email>
+    </Korisnik>
 </Korisnici>

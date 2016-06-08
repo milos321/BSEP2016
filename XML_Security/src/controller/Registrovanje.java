@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Korisnik;
+import jaxb.Marshalling;
+import jaxb.Korisnik;
 
 /**
  * Servlet implementation class Registrovanje
@@ -57,8 +58,20 @@ public class Registrovanje extends HttpServlet {
 		
 
 		if(password.equalsIgnoreCase(repeat_password)){
-			    Korisnik kor = new Korisnik(username,password,ime,prezime,"gradjanin",email);
-			 
+			    Korisnik kor = new Korisnik();
+			    kor.setKorisnickoIme(username);
+			    kor.setLozinka(password);
+			    kor.setIme(ime);
+			    kor.setPrezime(prezime);
+			    kor.setUloga("gradjanin");
+			    kor.setEmail(email);
+			    	Marshalling marsh = new Marshalling();
+			    	try {
+						marsh.test(kor);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			    	RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
 					disp.forward(request, response);
 			   

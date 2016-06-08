@@ -21,7 +21,7 @@ import javax.xml.datatype.DatatypeFactory;
  */
 public class Marshalling {
 	
-	public void test() throws Exception {
+	public void test(Korisnik korisnik) throws Exception {
 		try {
 			System.out.println("[INFO] Example 2: JAXB unmarshalling/marshalling.\n");
 			
@@ -31,10 +31,10 @@ public class Marshalling {
 			// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni model
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			Korisnici Korisnici = (Korisnici) unmarshaller.unmarshal(new File("./xml/korisnici.xml"));
+			Korisnici Korisnici = (Korisnici) unmarshaller.unmarshal(new File("C:/Users/Milos/Documents/Github/repoPrj/XML_Security/xml/korisnici.xml"));
 			
 			// Izmena nad objektnim modelom dodavanjem novog odseka
-			Korisnici.getKorisnik().add(createKorisnik("milos", "pass","milos", "savic","predsednik", "m@gmail.com"));
+			Korisnici.getKorisnik().add(korisnik);
 			
 			// Marshaller je objekat zadužen za konverziju iz objektnog u XML model
 			Marshaller marshaller = context.createMarshaller();
@@ -43,7 +43,7 @@ public class Marshalling {
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			
 			// Umesto System.out-a, može se koristiti FileOutputStream
-			marshaller.marshal(Korisnici, new File("./xml/korisnici.xml"));
+			marshaller.marshal(Korisnici, new File("C:/Users/Milos/Documents/Github/repoPrj/XML_Security/xml/korisnici.xml"));
 			marshaller.marshal(Korisnici, System.out);
 			
 			
@@ -67,6 +67,6 @@ public class Marshalling {
 	
     public static void main( String[] args ) throws Exception {
     	Marshalling test = new Marshalling();
-    	test.test();
+    	//test.test();
     }
 }

@@ -55,7 +55,7 @@ public class XMLWriter {
 		
 		// Define a URI value for a document.
 		String docId = "/probaaa3.xml";
-		String testDocId = "/test/probaaa3.xml";
+		String testDocId = "./data/probaaa3.xml";
 		
 		// Create an input stream handle to hold XML content.
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream("xml/probaaa.xml"));
