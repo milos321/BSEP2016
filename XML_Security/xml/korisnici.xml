@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Korisnici xmlns="http://www.ftn.uns.ac.rs/korisnici">
+    <Korisnik>
+        <KorisnickoIme>rale</KorisnickoIme>
+        <Lozinka>pass</Lozinka>
+        <Ime>rajko</Ime>
+        <Prezime>ilic</Prezime>
+        <Uloga>odbornik</Uloga>
+        <Email>r@gmail.com</Email>
+    </Korisnik>
+    <Korisnik>
+        <KorisnickoIme>milos</KorisnickoIme>
+        <Lozinka>pass</Lozinka>
+        <Ime>milos</Ime>
+        <Prezime>savic</Prezime>
+        <Uloga>predsednik</Uloga>
+        <Email>m@gmail.com</Email>
+    </Korisnik>
+</Korisnici>
