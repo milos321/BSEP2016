@@ -57,7 +57,7 @@ public class Registrovanje extends HttpServlet {
 		
 
 		if(password.equalsIgnoreCase(repeat_password)){
-			    Korisnik kor = new Korisnik(username,password,ime,prezime,email,"Gradjanin");
+			    Korisnik kor = new Korisnik(username,password,ime,prezime,"gradjanin",email);
 			 
 			    	RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
 					disp.forward(request, response);

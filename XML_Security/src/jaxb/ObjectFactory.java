@@ -52,5 +52,14 @@ public class ObjectFactory {
         return new Korisnik();
     }
     
+    
+    /**
+     * Create an instance of {@link Korisnik }
+     * 
+     */
+    public Korisnik createKorisnik1(Korisnik kor) {
+        return new Korisnik();
+    }
+    
 
 }
