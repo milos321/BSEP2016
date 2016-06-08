@@ -9,7 +9,8 @@ import java.io.PrintWriter;
 
 
 public class FileWriterReader {
-	public static String path = "C:\\Users\\Milos\\Documents\\GitHub\\repoPrj\\repoPrj - certs\\data";
+	public static String path = "C:\\Users\\Zivka\\Documents\\GitHub\\repoPrj\\repoPrj - certs\\data";
+	
 
 	//OVERWRITE, ID
 	public static int write(String string, Integer id) {

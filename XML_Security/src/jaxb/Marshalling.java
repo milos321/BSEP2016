@@ -64,67 +64,6 @@ public class Marshalling {
 		
 		return kor;
 	}
-/*
-	private OdsekType createOdsek(String id, String naziv) {
-
-		// Eksplicitno instanciranje OdsekType klase
-		OdsekType odsek = new OdsekType();
-		odsek.setId(id);
-		odsek.setNaziv(naziv);
-
-		// Generišu se studenti
-		odsek.setStudenti(createStudenti());
-		
-		return odsek;
-	}
-	
-	private Studenti createStudenti() {
-
-		// Instanciranje Studenti klase posredstvom ObjectFactory-a
-		ObjectFactory factory = new ObjectFactory();
-		Studenti studenti = factory.createOdsekTypeStudenti();
-		
-		// Generiše se novi student
-		studenti.getStudent().add(createStudent(12345, "Tijana", "Novkovic"));
-		
-		return studenti;
-	}
-	
-	private Student createStudent(int brojIndeksa, String ime, String prezime) {
-		
-		ObjectFactory factory = new ObjectFactory();
-		Student student = factory.createStudent();
-		student.setBrojIndeksa(brojIndeksa);
-		student.setIme(ime);
-		student.setPrezime(prezime);
-		
-		// Generiše položeni ispit
-		student.getPolozenIspit().add(createPolozenIspit("Dizajn", "Stevan Simic", 10));
-		
-		return student;
-	}
-	
-	private PolozenIspit createPolozenIspit(String predmet, String nastavnik, int ocena) {
-		try {
-			
-			ObjectFactory factory = new ObjectFactory();
-			PolozenIspit polozenIspit = factory.createPolozenIspit();
-			
-			GregorianCalendar calendar = new GregorianCalendar();
-			calendar.setTime(new Date());
-			
-			polozenIspit.setDatum(DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar));
-			polozenIspit.setNastavnik(nastavnik);
-			polozenIspit.setOcena((short) ocena);
-			polozenIspit.setPredmet(predmet);
-			
-			return polozenIspit;
-			
-		} catch (DatatypeConfigurationException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}*/
 	
     public static void main( String[] args ) throws Exception {
     	Marshalling test = new Marshalling();
