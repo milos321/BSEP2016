@@ -1,5 +1,7 @@
-/jaxb/
+/connection.properties
 /controller/
-/xquery/
-/util/
+/jaxb/
+/model/
 /security/
+/util/
+/xquery/

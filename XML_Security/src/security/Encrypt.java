@@ -30,14 +30,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import util.FilePaths;
+
 //Generise tajni kljuc
 //Kriptije sadrzaj elementa student tajnim kljucem
 //Snima tajni kljuc u fajl
 public class Encrypt {
 	
-	private static final String IN_FILE = "./xml/akt.xml";
-	private static final String OUT_FILE = "./xml/akt_enc.xml";
-	private static final String KEY_FILE = "./xml/dataKey1.key";
+	private  String IN_FILE = "./xml/akt.xml";
+	private  String OUT_FILE = "./xml/akt_enc.xml";
+	private  static final String KEY_FILE = FilePaths.keystores+"dataKey1.key";
 	
     static {
     	//staticka inicijalizacija
@@ -166,7 +168,7 @@ public class Encrypt {
 			xmlCipher.init(XMLCipher.ENCRYPT_MODE, key);
 			
 			//trazi se element ciji sadrzaj se kriptuje
-			NodeList odseci = doc.getElementsByTagName("Preambula");
+			NodeList odseci = doc.getElementsByTagName("Lozinka");
 			Element odsek = (Element) odseci.item(0);
 			
 			xmlCipher.doFinal(doc, odsek, true); //kriptuje sa sadrzaj
@@ -183,7 +185,24 @@ public class Encrypt {
 	
 	public static void main(String[] args) {
 		Encrypt encrypt = new Encrypt();
-		encrypt.testIt();
+	//	encrypt.testIt();
 	}
+	
+	public String getIN_FILE() {
+		return IN_FILE;
+	}
+
+	public void setIN_FILE(String iN_FILE) {
+		IN_FILE = iN_FILE;
+	}
+
+	public String getOUT_FILE() {
+		return OUT_FILE;
+	}
+
+	public void setOUT_FILE(String oUT_FILE) {
+		OUT_FILE = oUT_FILE;
+	}
+
 	
 }

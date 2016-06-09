@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jaxb.Marshalling;
+import security.Encrypt;
+import security.EncryptKEK;
 import security.SignEnveloped;
 import util.FilePaths;
 import util.FileWriterReader;
@@ -90,15 +92,29 @@ public class Registrovanje extends HttpServlet {
 						e.printStackTrace();
 					}
 			    	
+	
+			    	
 			    if(new File(FilePaths.keystores+certificate+".jks").exists()){
+			    	Encrypt enc = new Encrypt();
+				    enc.setIN_FILE(FilePaths.korisnici);
+				    enc.setOUT_FILE(FilePaths.korisnici);
+		//		    enc.setKEY_STORE_FILE(FilePaths.keystores+certificate+".jks");
+				    	
 			    SignEnveloped sign = new SignEnveloped();
 			    sign.setIN_FILE(FilePaths.korisnici);
 			    sign.setOUT_FILE(FilePaths.korisnici);
 			    sign.setKEY_STORE_FILE(FilePaths.keystores+certificate+".jks");
 			    sign.setName(certificate);
 			    sign.setPass(certificate);
+			    
+			   
+			    enc.testIt();
 			    sign.testIt();
+			    
 			    }
+			    
+			    
+			    
 			    
 			    XMLWriter.run(Util.loadProperties());
 			   	RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
