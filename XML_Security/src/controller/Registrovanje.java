@@ -2,7 +2,10 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.cert.Certificate;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jaxb.Marshalling;
+import security.KeyStoreReader;
 import security.SignEnveloped;
 import util.FilePaths;
 import util.FileWriterReader;
@@ -91,13 +95,36 @@ public class Registrovanje extends HttpServlet {
 					}
 			    	
 			    if(new File(FilePaths.keystores+certificate+".jks").exists()){
-			    SignEnveloped sign = new SignEnveloped();
-			    sign.setIN_FILE(FilePaths.korisnici);
-			    sign.setOUT_FILE(FilePaths.korisnici);
-			    sign.setKEY_STORE_FILE(FilePaths.keystores+certificate+".jks");
-			    sign.setName(certificate);
-			    sign.setPass(certificate);
-			    sign.testIt();
+			    	boolean povucen = false;
+			    	File f = new File(FilePaths.keystores+"sgns-revoked.jks");
+						if(f.exists() && !f.isDirectory()) {
+							System.out.println("EEEEEEEEEEEE");
+							 KeyStoreReader ksr = new KeyStoreReader();
+							    ksr.setKeyStoreFile(FilePaths.keystores+"sgns-revoked.jks");
+							    ksr.setPassword("sgns-revoked".toCharArray());
+							    ksr.setKeyPass("test10".toCharArray());
+							    HashMap<String,Certificate> sertifikati = ksr.readKeyStore();
+							    Iterator it =  sertifikati.keySet().iterator();
+							    while(it.hasNext())
+							    {
+							    	String sert = it.next().toString();
+							    	
+							    	if(sert.equals(certificate)){
+							    		System.out.println("SERTIFIKAT JE POVUCEN!!!");
+							    		povucen = true;
+							    		break;
+							    	}
+							    }
+						}
+				if(!povucen){
+				    SignEnveloped sign = new SignEnveloped();
+				    sign.setIN_FILE(FilePaths.korisnici);
+				    sign.setOUT_FILE(FilePaths.korisnici);
+				    sign.setKEY_STORE_FILE(FilePaths.keystores+certificate+".jks");
+				    sign.setName(certificate);
+				    sign.setPass(certificate);
+				    sign.testIt();
+				}
 			    }
 			    
 			    XMLWriter.run(Util.loadProperties());
