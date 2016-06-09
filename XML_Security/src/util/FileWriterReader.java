@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 
 
 public class FileWriterReader {
-	public static String path = "C:\\Users\\Milos\\Documents\\GitHub\\repoPrj\\XML_Security\\data";
+	public static String path = FilePaths.keystores;
 	
 
 	//OVERWRITE, ID

@@ -36,6 +36,8 @@ public class Marshalling {
 			Korisnici Korisnici = (Korisnici) unmarshaller.unmarshal(new File(FilePaths.korisnici));
 			
 			// Izmena nad objektnim modelom dodavanjem novog odseka
+		
+			
 			Korisnici.getKorisnik().add(korisnik);
 			
 			// Marshaller je objekat zadužen za konverziju iz objektnog u XML model

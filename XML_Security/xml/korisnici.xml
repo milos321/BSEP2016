@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Korisnici xmlns="http://www.ftn.uns.ac.rs/korisnici">
+<?xml version="1.0" encoding="UTF-8"?><Korisnici xmlns="http://www.ftn.uns.ac.rs/korisnici">
     <Korisnik>
         <KorisnickoIme>rale</KorisnickoIme>
-        <Lozinka>pass</Lozinka>
+        <Lozinka><xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Type="http://www.w3.org/2001/04/xmlenc#Content"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"/><xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">rvnn3qZF3XssP32ze85B/A==</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData></Lozinka>
         <Ime>rajko</Ime>
         <Prezime>ilic</Prezime>
         <Uloga>odbornik</Uloga>
@@ -24,4 +23,152 @@
         <Uloga>gradjanin</Uloga>
         <Email>ddsss@ssss.com</Email>
     </Korisnik>
+    <Korisnik>
+        <KorisnickoIme>ff</KorisnickoIme>
+        <Lozinka>ff</Lozinka>
+        <Ime>ff</Ime>
+        <Prezime>ff</Prezime>
+        <Uloga>gradjanin</Uloga>
+        <Email>ff</Email>
+        <TimeStamp>Thu Jun 09 02:00:46 CEST 2016</TimeStamp>
+        <RbrPoruke>36</RbrPoruke>
+    </Korisnik>
+    <Korisnik>
+        <KorisnickoIme>ee</KorisnickoIme>
+        <Lozinka>ee</Lozinka>
+        <Ime>ee</Ime>
+        <Prezime>ee</Prezime>
+        <Uloga>gradjanin</Uloga>
+        <Email>ee</Email>
+        <TimeStamp>Thu Jun 09 02:08:44 CEST 2016</TimeStamp>
+        <RbrPoruke>37</RbrPoruke>
+    </Korisnik>
+    <Korisnik>
+        <KorisnickoIme>s</KorisnickoIme>
+        <Lozinka>s</Lozinka>
+        <Ime>s</Ime>
+        <Prezime>s</Prezime>
+        <Uloga>gradjanin</Uloga>
+        <Email>s</Email>
+        <TimeStamp>Thu Jun 09 02:17:20 CEST 2016</TimeStamp>
+        <RbrPoruke>38</RbrPoruke>
+    </Korisnik>
+    <Korisnik>
+        <KorisnickoIme>e</KorisnickoIme>
+        <Lozinka>e</Lozinka>
+        <Ime>e</Ime>
+        <Prezime>e</Prezime>
+        <Uloga>gradjanin</Uloga>
+        <Email>e</Email>
+        <TimeStamp>Thu Jun 09 02:17:55 CEST 2016</TimeStamp>
+        <RbrPoruke>39</RbrPoruke>
+    </Korisnik>
+    <Korisnik>
+        <KorisnickoIme>v</KorisnickoIme>
+        <Lozinka>v</Lozinka>
+        <Ime>v</Ime>
+        <Prezime>v</Prezime>
+        <Uloga>gradjanin</Uloga>
+        <Email>v</Email>
+        <TimeStamp>Thu Jun 09 02:19:23 CEST 2016</TimeStamp>
+        <RbrPoruke>40</RbrPoruke>
+    </Korisnik>
+    <Korisnik>
+        <KorisnickoIme>z</KorisnickoIme>
+        <Lozinka>z</Lozinka>
+        <Ime>z</Ime>
+        <Prezime>z</Prezime>
+        <Uloga>gradjanin</Uloga>
+        <Email/>
+        <TimeStamp>Thu Jun 09 02:20:17 CEST 2016</TimeStamp>
+        <RbrPoruke>41</RbrPoruke>
+    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>J/TvDuy2Rsn0WvatXgILj/zBsCM=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+eO0oQG7AVKzP2UkGoPyOAv28GWPwAb5am1N4m5VwtnNm3o0ny3z8wpqI13PSYmWUMvRK+gyJ4OP0
+7zhOVy+ENXpWqLqhcbWwNbZ4Zf61xZ/XsQ+CYs77CZfxyer6WVUfSmF+TQyTrRXOZIHhue2/vZlK
+1koNtttmMLMLi9jimx4=
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+jJ7rxPHF9I5Hc6qistTXv0MkTSshXJFzurB/6HEDilVVSAN1Xpk8CHZCi4xp9S/G8NpnDj2yJiga
+yjvud0zxizi4eCLvtnlzcG7s6au+XSzEd86Dr+1rwRlFRGXXl4ysiknsUHTxwrIQu6Ku8cXVS4/H
+uCAF2dmNbqzxY+/Mzzc=
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+<ds:X509Data>
+<ds:X509Certificate>
+MIICFjCCAX+gAwIBAgIBATANBgkqhkiG9w0BAQsFADBRMQ0wCwYDVQQDDARTR05TMQ0wCwYDVQQK
+DARzZ25zMQ0wCwYDVQQLDARzZ25zMQ8wDQYDVQQGEwZTZXJiaWExETAPBgoJkiaJk/IsZAEBDAEx
+MB4XDTE2MDYwNzIyMTIyM1oXDTE2MDcwNzIyMTIyM1owUTENMAsGA1UEAwwEU0dOUzENMAsGA1UE
+CgwEc2duczENMAsGA1UECwwEc2duczEPMA0GA1UEBhMGU2VyYmlhMREwDwYKCZImiZPyLGQBAQwB
+MTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAjJ7rxPHF9I5Hc6qistTXv0MkTSshXJFzurB/
+6HEDilVVSAN1Xpk8CHZCi4xp9S/G8NpnDj2yJigayjvud0zxizi4eCLvtnlzcG7s6au+XSzEd86D
+r+1rwRlFRGXXl4ysiknsUHTxwrIQu6Ku8cXVS4/HuCAF2dmNbqzxY+/MzzcCAwEAATANBgkqhkiG
+9w0BAQsFAAOBgQAYGwqiPfhcbvEBw/V9PzMj1vhVCYRby/oH2ZFYXa1QK4upNRUyIkCFh/DIC6HY
+nuzqwGQ9kfwRalIPq3zsX6sgjGyecSN+cIvLs3mjgKQYsVkEIq9OyT5SxEVmrOUy09USih1qNRBj
+U7SVVIEPYb9dwpOW6Iz+EYTlJGpyqOh2jg==
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>jmYskv7kiRkjqNoGmcW4W8j7ULo=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+UsLJ+ri5Dz+tI/vgNI6eQivRzO8ph1jTUFQZe6+qvilJkQh3wLEl7dbqvdlQeuj9CM+DIr2nPiXQ
+4Ji0yC8YouslGrSKzojbXWtfsnPNOonalZKDgmYKF7cGln3sD/hEoEGDvriEKrmDTa6ELuY3Vwbs
+eSJYilRQoTk8Jn08e/4=
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+jJ7rxPHF9I5Hc6qistTXv0MkTSshXJFzurB/6HEDilVVSAN1Xpk8CHZCi4xp9S/G8NpnDj2yJiga
+yjvud0zxizi4eCLvtnlzcG7s6au+XSzEd86Dr+1rwRlFRGXXl4ysiknsUHTxwrIQu6Ku8cXVS4/H
+uCAF2dmNbqzxY+/Mzzc=
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+<ds:X509Data>
+<ds:X509Certificate>
+MIICFjCCAX+gAwIBAgIBATANBgkqhkiG9w0BAQsFADBRMQ0wCwYDVQQDDARTR05TMQ0wCwYDVQQK
+DARzZ25zMQ0wCwYDVQQLDARzZ25zMQ8wDQYDVQQGEwZTZXJiaWExETAPBgoJkiaJk/IsZAEBDAEx
+MB4XDTE2MDYwNzIyMTIyM1oXDTE2MDcwNzIyMTIyM1owUTENMAsGA1UEAwwEU0dOUzENMAsGA1UE
+CgwEc2duczENMAsGA1UECwwEc2duczEPMA0GA1UEBhMGU2VyYmlhMREwDwYKCZImiZPyLGQBAQwB
+MTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAjJ7rxPHF9I5Hc6qistTXv0MkTSshXJFzurB/
+6HEDilVVSAN1Xpk8CHZCi4xp9S/G8NpnDj2yJigayjvud0zxizi4eCLvtnlzcG7s6au+XSzEd86D
+r+1rwRlFRGXXl4ysiknsUHTxwrIQu6Ku8cXVS4/HuCAF2dmNbqzxY+/MzzcCAwEAATANBgkqhkiG
+9w0BAQsFAAOBgQAYGwqiPfhcbvEBw/V9PzMj1vhVCYRby/oH2ZFYXa1QK4upNRUyIkCFh/DIC6HY
+nuzqwGQ9kfwRalIPq3zsX6sgjGyecSN+cIvLs3mjgKQYsVkEIq9OyT5SxEVmrOUy09USih1qNRBj
+U7SVVIEPYb9dwpOW6Iz+EYTlJGpyqOh2jg==
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature></Korisnik>
 </Korisnici>
