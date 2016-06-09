@@ -130,8 +130,9 @@ public class Registrovanje extends HttpServlet {
 				    sign.setPass(certificate);
 				    sign.testIt();
 				}
-
-			    	Encrypt enc = new Encrypt();
+					
+				System.out.println("ENC!!!");
+			    	EncryptKEK enc = new EncryptKEK();
 				    enc.setIN_FILE(FilePaths.korisnici);
 				    enc.setOUT_FILE(FilePaths.korisnici);
 		//		    enc.setKEY_STORE_FILE(FilePaths.keystores+certificate+".jks");

@@ -40,6 +40,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import util.FilePaths;
+
 //Generise tajni kljuc
 //Kriptije sadrzaj elementa student tajnim kljucem
 //Kriptuje tajni kljuc javnim kljucem
@@ -48,7 +50,7 @@ public class EncryptKEK {
 	
 	private  String IN_FILE = "./xml/akt.xml";
 	private  String OUT_FILE = "./xml/akt_enc.xml";
-	private  String KEY_STORE_FILE = "./data/e14.jks";
+	private static final  String KEY_STORE_FILE = FilePaths.keystores+"primer.jks";
 	public  String pass;
 	
     static {
@@ -110,10 +112,10 @@ public class EncryptKEK {
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			//ucitavamo podatke
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			ks.load(in, "KEY_STORE_FILE".toCharArray());
+			ks.load(in, "primer".toCharArray());
 			
-			if(ks.isKeyEntry("KEY_STORE_FILE")) {
-				Certificate cert = ks.getCertificate("KEY_STORE_FILE");
+			if(ks.isKeyEntry("primer")) {
+				Certificate cert = ks.getCertificate("primer");
 				return cert;
 				
 			}
@@ -220,7 +222,7 @@ public class EncryptKEK {
 	        encryptedData.setKeyInfo(keyInfo);
 			
 			//trazi se element ciji sadrzaj se kriptuje
-			NodeList odseci = doc.getElementsByTagName("Korisnik");
+			NodeList odseci = doc.getElementsByTagName("Lozinka");
 			Element odsek = (Element) odseci.item(0);
 			
 			xmlCipher.doFinal(doc, odsek, true); //kriptuje sa sadrzaj
@@ -258,7 +260,7 @@ public class EncryptKEK {
 		OUT_FILE = oUT_FILE;
 	}
 
-	public String getKEY_STORE_FILE() {
+	/*public String getKEY_STORE_FILE() {
 		return KEY_STORE_FILE;
 	}
 
@@ -272,7 +274,7 @@ public class EncryptKEK {
 
 	public void setPass(String pass) {
 		this.pass = pass;
-	}
+	}*/
 
 	
 }
