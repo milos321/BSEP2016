@@ -136,16 +136,9 @@ public class Registrovanje extends HttpServlet {
 				    enc.setOUT_FILE(FilePaths.korisnici);
 		//		    enc.setKEY_STORE_FILE(FilePaths.keystores+certificate+".jks");
 				    	
-			    SignEnveloped sign = new SignEnveloped();
-			    sign.setIN_FILE(FilePaths.korisnici);
-			    sign.setOUT_FILE(FilePaths.korisnici);
-			    sign.setKEY_STORE_FILE(FilePaths.keystores+certificate+".jks");
-			    sign.setName(certificate);
-			    sign.setPass(certificate);
-			    
+			   
 			   
 			    enc.testIt();
-			    sign.testIt();
 			    
 			    }
 			    
